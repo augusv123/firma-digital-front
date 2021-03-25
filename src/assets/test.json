@@ -1,0 +1,43 @@
+[
+    {
+        "key":"notes",
+        "type": "text",
+        "options":{
+            "label": "Additional notes for us"
+        }
+    },
+    {
+        "key":"birthday",
+        "type": "date",
+        "options":{
+            "label": "Your birthday"
+        }
+    },
+    {
+        "key":"newsteller",
+        "type": "boolean",
+        "options":{
+            "label": "subscribe to our newsteller"
+        }
+    },
+    {
+        "key":"email",
+        "type": "input",
+        "options":{
+            "label": "Your email",
+            "placeholder" : "foobar@gmail.com",
+            "required": true
+        }
+    },
+    {
+        "key":"password",
+        "type": "input",
+        "options":{
+            "label": "Min. 6 characters",
+            "placeholder" : "123456",
+            "required": true,
+            "type": "password"
+        }
+    }
+
+]

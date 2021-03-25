@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>OptionsPage</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ng-container  [ngSwitch]="type">
+    <ion-row  *ngSwitchCase="'boolean'">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Requerido ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.required"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row  *ngSwitchCase="'text'">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Requerido ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.required"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>min. caracteres ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.hasminlength"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>valor</ion-label>
+          <ion-input [disabled]="!input.options.hasminlength" type="number" [(ngModel)]="input.options.minlength" ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row  *ngSwitchCase="'number'">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Requerido ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.required"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>minimo ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.hasmin"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>valor</ion-label>
+          <ion-input [disabled]="!input.options.hasmin" type="number" [(ngModel)]="input.options.min" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>maximo ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.hasmax"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>valor</ion-label>
+          <ion-input [disabled]="!input.options.hasmax" type="number" [(ngModel)]="input.options.max" ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row  *ngSwitchCase="'date'">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Requerido ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.required"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>minimo ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.hasmin"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>valor</ion-label>
+          <ion-input [disabled]="!input.options.hasmin" type="number" [(ngModel)]="input.options.min" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>maximo ?</ion-label>
+          <ion-checkbox [(ngModel)]="input.options.hasmax"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>valor</ion-label>
+          <ion-input [disabled]="!input.options.hasmax" type="number" [(ngModel)]="input.options.max" ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngSwitchDefault>
+      <ion-col size="12">
+        <ion-item>
+          <ion-badge color="warning">Por favor seleccione el tipo de campo para poder ver sus opciones.</ion-badge>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ng-container>
+
+</ion-content>

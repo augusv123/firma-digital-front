@@ -1,0 +1,203 @@
+
+
+<ion-content padding='true'>
+  <div class="center">
+    <h1>Formulario de actualización de situación (ADS)</h1>
+  </div>
+<form #formhtml>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime [pickerOptions]="customPickerOptions" placeholder="Custom Options"  displayFormat="YYYY" min="2000" max="2021"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        ** Completar según corresponda al cambio (todos los datos que impacten al cambio).						
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+        <ion-text>Colaborador</ion-text>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            Nombre
+          </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            Legajo
+          </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Sector</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-list-header class="tituloseccion">
+      <ion-label>Cambio de posición</ion-label>
+
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Posición actual</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Posición nueva</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>La posicion ya existe ?</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Reemplaza a otra posicion ya existente?</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Justificación</ion-label>
+      <ion-textarea row="3"></ion-textarea>
+    </ion-item>
+ 
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header class="tituloseccion">
+      <ion-label>Cambio de estructura (Líder)</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Lider actual</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nuevo Lider</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Justificación</ion-label>
+      <ion-textarea row="3"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header class="tituloseccion">
+      <ion-label>Cambio de sector						
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Sector actual	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sector actual	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Justificación</ion-label>
+      <ion-textarea row="3"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header class="tituloseccion">
+      <ion-label>Cambio de centro de costo</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Actual CEO	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nuevo CEO	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Justificación</ion-label>
+      <ion-textarea row="3"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header class="tituloseccion">
+      <ion-label>Cambio de convenio</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Actual	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nuevo	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Condiciones de cambio	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Justificación</ion-label>
+      <ion-textarea row="3"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header class="tituloseccion">
+      <ion-label>Ajuste salarial</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Saldo actual	
+      </ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Saldo propuesto	
+      </ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Grado	
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Bono	
+      </ion-label>
+      <ion-segment style="width: 80%;">
+        <ion-segment-button>Si</ion-segment-button>
+        <ion-segment-button>No</ion-segment-button>
+        <ion-segment-button>No aplica</ion-segment-button>
+      </ion-segment>
+    </ion-item>
+    <ion-item>
+      <ion-label>Justificación</ion-label>
+      <ion-textarea row="3"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" share="round" color="success" (click)="signAndSend(formhtml)">Firmar y enviar solicitud </ion-button>
+</form>
+
+
+</ion-content>

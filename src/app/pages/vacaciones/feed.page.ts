@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from 'src/app/services/feed.service';
-import { AuthService } from './../../services/auth.service';
-import { ToastService } from './../../services/toast.service';
+import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-feed',

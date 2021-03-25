@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "new-ionic-angular",
+  "appId": "com.firmadigital.app",
+  "appName": "firma-digital",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www"

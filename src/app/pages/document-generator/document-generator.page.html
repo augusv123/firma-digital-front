@@ -1,0 +1,208 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Generador de documentos digitales</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+
+<ion-grid padding="true">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Titulo del formulario:</ion-label>
+        <ion-input [(ngModel)]="title"></ion-input>
+      </ion-item>
+    </ion-col>
+    <!-- <ion-col>
+      <ion-item>
+        <ion-label>Logo formulario</ion-label>
+        <ion-input type="file"> </ion-input>
+      </ion-item>
+    </ion-col> -->
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      
+      <h2 class="titulosformgenerator">Secciones del formulario</h2>
+    </ion-col>
+    <ion-col>
+      
+      <ion-item>
+        <ion-button  color="primary"  (click)="addSubtitulo()"  fill="clear" expand="block"> Agregar categoria o seccion
+           <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+
+      <ion-item>        
+          <ion-chip  ionicColorPicker
+          [colors]="['#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9', '#3498DB', '#1ABC9C', '#16A085', '#27AE60', '#2ECC71']"
+          (colorPickerOpen)="colorPickerOpened($event)"
+          (colorPickerClose)="colorPickerClosed($event)"
+          (colorChange)="colorChanged($event)" [ngStyle]="{ 'color': 'white','background-color': categoriesColor? categoriesColor:'#808080'}"> Cambiar color de categorias <ion-icon name="color-palette"></ion-icon> </ion-chip> 
+      </ion-item>
+    </ion-col>
+      <ion-col size="12">
+
+        <ion-item *ngFor="let subtitulo of subtitulosInputs;  let i = index;"   >
+          <ion-input [ngStyle]="{ 'color': 'white','background-color': categoriesColor? categoriesColor:'#808080'}" style=" border-radius: 6px; text-align: center;" type="text"  [(ngModel)]="subtitulo.label"></ion-input>  
+          <ion-button  color="danger"  (click)="borrarSubtitulo(i)"  fill="clear" expand="block"> Eliminar
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+        
+   
+  </ion-row>
+  </ion-grid>
+  <ion-grid padding="true">
+    
+  <ion-row>
+    <ion-col size="12">
+      <h2 class="titulosformgenerator">Inputs del formulario</h2>
+    </ion-col>
+    <ion-col>
+
+      <ion-button  color="primary" expand="block"  (click)="addInput()">
+        <ion-icon name="add"></ion-icon>
+        
+      </ion-button>
+    </ion-col>
+    <ion-col>
+
+      <ion-button expand="full" color="danger" expand="block"   (click)="removeInput()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  
+
+  <ion-row *ngFor="let control of dynamicform; let i = index;">
+    <ion-col style="visibility: hidden;">
+
+      <ion-item>
+        <ion-label>Identificador </ion-label>
+      <ion-input  [(ngModel)]="dynamicform[i].key" [value]="dynamicform[i].label + i" name=attribute-{{id}} placeholder="clave del campo"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+
+      <ion-item>
+        <ion-label>Etiqueta</ion-label>
+        <ion-input required   [(ngModel)]="dynamicform[i].label" name=label-{{id}} placeholder="etiqueta del campo"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select required="true"   [(ngModel)]="dynamicform[i].type"  name=type-{{id}}  placeholder="seleccione el tipo de campo">
+          <ion-select-option value="number">Numero</ion-select-option>
+          <ion-select-option value="text">Texto</ion-select-option>
+          <ion-select-option value="date">Fecha</ion-select-option>
+          <ion-select-option value="boolean">Booleano</ion-select-option>
+          <ion-select-option value="select">Selector</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+
+  
+    
+    <ion-col>
+
+      <ion-item>
+        <ion-label>Categoria</ion-label>
+        <ion-select   [(ngModel)]="dynamicform[i].positionKey"  name=position-{{id}}  placeholder="seleccione categoria">
+          <ion-select-option *ngFor="let subtitulo of subtitulosInputs" value="{{subtitulo.label}}">{{subtitulo.label}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-button shape="round"  (click)="openOptionsModal(dynamicform[i])" fill="outline">
+        <ion-icon name="options" ></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="12" *ngIf="dynamicform[i].type == 'select' ">
+      <ion-col size="12"> 
+          
+        <ion-label>Opciones</ion-label>
+        <ion-button  color="primary" fill="clear" (click)="addOption(dynamicform[i])"> Agregar opcion
+          <ion-icon name="add"></ion-icon>
+          
+        </ion-button>
+      </ion-col>
+      <ion-row *ngFor="let option of dynamicform[i].selectOptions ">
+  
+        <ion-col>
+
+          <ion-item>
+            <ion-label>
+              Valor
+            </ion-label>
+            <ion-input [(ngModel)]="option.value"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+
+          <ion-item>
+            <ion-label>
+              Etiqueta
+            </ion-label>
+            <ion-input [(ngModel)]="option.label"></ion-input>
+          </ion-item>
+        </ion-col>
+    
+      </ion-row>
+    </ion-col>
+
+    
+  </ion-row>
+  </ion-grid>
+
+  <ion-grid padding="true">
+  <ion-row>
+    <ion-col>
+      <h2 class="titulosformgenerator">Texto y posiciones de input </h2>
+      
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+
+      <textarea  style="width: 100%;"  autofocus [(ngModel)]="formText" rows="3"  #textareaform (click)="getCaretPosition(textareaform)"  ></textarea>
+    </ion-col>
+    <ion-col>
+
+      <ion-list>
+       <ion-radio-group #radiok value="-1">
+         <ion-list-header>
+           <ion-label>Posiciones de los input</ion-label>
+         </ion-list-header>
+         <ion-reorder-group disabled="false"  (ionItemReorder)="doReorder($event,radiok)">
+         <ion-item *ngFor="let control of dynamicform; let i = index;" >
+           <ion-label>{{control.label}}</ion-label>
+           <ion-radio  (click)="tooglePressed(control.key)" slot="start" value="{{i}}"></ion-radio>
+           <ion-reorder slot="end"></ion-reorder>
+         </ion-item>
+        </ion-reorder-group>
+       </ion-radio-group>
+     </ion-list>
+    </ion-col>
+  
+  </ion-row>
+
+
+ 
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-justify-content-center" size="3">
+
+        <ion-button  color="primary"  (click)="saveForm()" expand="block" > Confirmar y guardar
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

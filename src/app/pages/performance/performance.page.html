@@ -1,0 +1,457 @@
+<ion-content padding='true'>
+  <div class="center">
+    <h1>Evaluacion de desempeño</h1>
+  </div>
+  <!-- <form> -->
+  
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-list >
+        <ion-item>
+          <ion-label>Nombre y apellido</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Ingreso</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Lider</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+
+          <ion-label>Puesto</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Legajo N°</ion-label>
+          <ion-input type="number "></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Planta</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+         
+       
+      
+        <!-- <ion-item>
+          <ion-range min="1" max="5" pin="true" step="1" snaps="true"  color="secondary">
+            < <ion-icon size="small" slot="start" name="sunny"></ion-icon>
+            <ion-label slot="start">Insatisfactorio</ion-label>
+            <ion-label slot="end">Casi siempre supera lo esperado</ion-label>
+            
+          </ion-range>
+        </ion-item>
+       -->
+  
+      </ion-list>  
+    </ion-slide>
+    <ion-slide>
+      <!-- <ion-list>
+        <ion-list-header>
+          <ion-label>
+            REFERENCIAS
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-text>
+            Capacidad para realizar el trabajo
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Incapaz de ejecutar las tareas asignadas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Necesita continua supervisión</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Debe ser guiado con frecuencia</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Conoce bien su trabajo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Máxima confianza
+                Preparación óptima</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+      
+        <ion-item>
+          <ion-text>
+            Calidad del trabajo
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Inseguro
+                Excesivo número de errores
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Poco cuidadoso
+                Errores frecuentes
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Cuidado normal</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Habitualmente cuidadoso</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Muy cuidadoso Muy preciso</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Cantidad de trabajo
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Muy lento
+                Volumen insuficiente
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Frecuentemente escaso volumen de trabajo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Velocidad normal
+                Cantidad suficiente
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Volumen de trabajo superior a la media</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel"> Muy rápido Notable volumen de trabajo </ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Espíritu de colaboración
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Manifiesta oposición a la colaboración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Colabora sin mucho entusiasmo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">No rehúye la colaboración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Buena disposición a la colaboración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Dispuesto siempre a colaborar</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Iniciativa
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Iniciativa nula</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Raramente demuestra iniciativa</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Iniciativa solo para la normal administración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Trabaja con buen criterio</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Brillante. Sugiere con frecuencia buenas ideas</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Constancia y Puntualidad
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Ausencia con dudosa justificación
+                Retrasos habituales
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Necesita continua supervisión</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Ausencias y retrasos poco convincentes </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Puntual, pocas ausencias y justificadas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Empeño excepcional</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+      </ion-list> -->
+      <ion-item>
+        <ion-label>
+          Capacidad para realizar el trabajo
+        </ion-label>
+
+          <ion-select>
+            <ion-label>Puntaje</ion-label>
+            <ion-select-option>Incapaz de ejecutar las tareas asignadas</ion-select-option>
+            <ion-select-option>Necesita continua supervisión</ion-select-option>
+            <ion-select-option>Debe ser guiado con frecuencia</ion-select-option>
+            <ion-select-option>Conoce bien su trabajo</ion-select-option>
+            <ion-select-option>Máxima confianza
+              Preparación óptima
+              </ion-select-option>
+          </ion-select>
+      </ion-item>
+    </ion-slide>
+    <ion-slide>
+      <ion-list >
+        <ion-list-header>
+          <ion-label>
+            A.	FACTORES DE EVALUACION
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>
+            Ejecuta las tareas asignadas y explicadas con eficiencia.
+          </ion-label>
+          <ion-button expand="block" (click)="openPicker()">calificacion</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+    <ion-slide>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>
+            REFERENCIAS
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-text>
+            Capacidad para realizar el trabajo
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Incapaz de ejecutar las tareas asignadas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Necesita continua supervisión</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Debe ser guiado con frecuencia</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Conoce bien su trabajo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Máxima confianza
+                Preparación óptima</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+      
+        <ion-item>
+          <ion-text>
+            Calidad del trabajo
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Inseguro
+                Excesivo número de errores
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Poco cuidadoso
+                Errores frecuentes
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Cuidado normal</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Habitualmente cuidadoso</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Muy cuidadoso Muy preciso</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Cantidad de trabajo
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Muy lento
+                Volumen insuficiente
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Frecuentemente escaso volumen de trabajo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Velocidad normal
+                Cantidad suficiente
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Volumen de trabajo superior a la media</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel"> Muy rápido Notable volumen de trabajo </ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Espíritu de colaboración
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Manifiesta oposición a la colaboración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Colabora sin mucho entusiasmo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">No rehúye la colaboración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Buena disposición a la colaboración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Dispuesto siempre a colaborar</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Iniciativa
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Iniciativa nula</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Raramente demuestra iniciativa</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Iniciativa solo para la normal administración</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Trabaja con buen criterio</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Brillante. Sugiere con frecuencia buenas ideas</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            Constancia y Puntualidad
+          </ion-text>
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Ausencia con dudosa justificación
+                Retrasos habituales
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Necesita continua supervisión</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Ausencias y retrasos poco convincentes </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Puntual, pocas ausencias y justificadas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Empeño excepcional</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-item>
+      </ion-list> 
+    </ion-slide>
+  </ion-slides>
+  <!-- </form> -->
+
+    <!-- <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-text>
+            Competencias / Aptitudes / Actitudes
+          </ion-text>ionic integrations enable capacitor
+        </ion-col>
+        <ion-col>
+          <ion-text>
+            Puntaje
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2">
+          <ion-text>
+            Capacidad para realizar el trabajo
+          </ion-text>
+        </ion-col>
+        <ion-col size="10">
+          <ion-segment  value="heart">
+            <ion-segment-button value="home">
+               <ion-label class="segmentlabel">Incapaz de ejecutar las tareas asignadas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="heart">
+              <ion-label class="segmentlabel">Necesita continua supervisión</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pin">
+              <ion-label class="segmentlabel">Debe ser guiado con frecuencia</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="star">
+              <ion-label class="segmentlabel">Conoce bien su trabajo</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="call">
+              <ion-label class="segmentlabel">
+                Máxima confianza
+                Preparación óptima</ion-label>
+            </ion-segment-button>
+           
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
+ 
+  
+</ion-content>

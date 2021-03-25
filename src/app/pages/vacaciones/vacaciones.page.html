@@ -1,0 +1,51 @@
+
+
+<ion-content padding='true'>
+  <div class="center">
+    <h1>Formulario de solicitud de vacaciones</h1>
+  </div>
+<form>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Dias de licencia</ion-label>
+      <ion-input autocomplete="off" type="number" name="email" [(ngModel)]="postData.licencia"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Periodo anual correspondiente</ion-label>
+      <ion-datetime [pickerOptions]="customPickerOptions" name="email" placeholder="Custom Options" [(ngModel)]="postData.anual" displayFormat="YYYY" min="2000" max="2021"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Desde</ion-label>
+      <ion-datetime [pickerOptions]="customPickerOptions" name="email" placeholder="Custom Options" [(ngModel)]="postData.desde" displayFormat="DD/MM/YY" pickerFormat="DD/MM/YY" ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hasta</ion-label>
+      <ion-datetime [pickerOptions]="customPickerOptions" name="email" placeholder="Custom Options" [(ngModel)]="postData.hasta" displayFormat="DD/MM/YY" min="2000" max="2021"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha de reincorporacion</ion-label>
+      <ion-datetime [pickerOptions]="customPickerOptions" name="email" placeholder="Custom Options" [(ngModel)]="postData.reincorporacion" displayFormat="DD/MM/YY" min="2000" max="2021"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-text color="dark">
+        <h2>
+          Mediante la presente, me dirijo a usted para solicitarle con la debida antelación, [{{postData.licencia}}] días de licencia por 
+          vacaciones que me corresponden por el periodo anual [{{postData.anual| date:'yyyy'}}],  
+          desde el día <span> [{{postData.desde| date:'d/M/yyyy'}}]</span>  inclusive, hasta el día [{{postData.hasta | date:'d/M/yyyy'}}] inclusive, 
+          reincorporándome a mi trabajo el día [{{postData.reincorporacion| date:'d/M/yyyy'}}]
+           en mi horario habitual.
+      
+          Agradeciendo su atención y esperando que no exista inconveniente por su parte, quedo a la espera de su contestación.
+        
+        </h2>
+      </ion-text>
+    </ion-item>
+  
+  </ion-list>
+  <ion-button expand="block" share="round" color="success" (click)="signAndSend()">Firmar y enviar solicitud </ion-button>
+</form>
+
+
+</ion-content>

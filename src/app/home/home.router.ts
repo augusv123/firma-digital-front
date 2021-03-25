@@ -14,17 +14,28 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'feed',
+        path: 'forms',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/feed/feed.module').then(m => m.FeedPageModule)
+              import('../pages/forms/forms.module').then(m => m.FormsPageModule)
           }
         ]
       },
       {
-        path: 'messages',
+        path: 'vacaciones',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/vacaciones/vacaciones.module').then(m => m.VacacionesPageModule)
+          }
+        ]
+      },
+      
+      {
+        path: 'documentos',
         children: [
           {
             path: '',
@@ -36,13 +47,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'notifications',
+        path: 'documentgenerator',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/notifications/notifications.module').then(
-                m => m.NotificationsPageModule
+              import('../pages/document-generator/document-generator.module').then(
+                m => m.DocumentGeneratorPageModule
               )
           }
         ]
@@ -61,7 +72,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/home/feed',
+        redirectTo: '/home/forms',
         pathMatch: 'full'
       }
     ]

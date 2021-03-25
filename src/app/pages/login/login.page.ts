@@ -12,7 +12,7 @@ import { ToastService } from './../../services/toast.service';
 })
 export class LoginPage implements OnInit {
   postData = {
-    username: '',
+    email: '',
     password: ''
   };
 
@@ -27,12 +27,12 @@ export class LoginPage implements OnInit {
 
   validateInputs() {
     console.log(this.postData);
-    let username = this.postData.username.trim();
+    let email = this.postData.email.trim();
     let password = this.postData.password.trim();
     return (
-      this.postData.username &&
+      this.postData.email &&
       this.postData.password &&
-      username.length > 0 &&
+      email.length > 0 &&
       password.length > 0
     );
   }
@@ -41,24 +41,31 @@ export class LoginPage implements OnInit {
     if (this.validateInputs()) {
       this.authService.login(this.postData).subscribe(
         (res: any) => {
-          if (res.userData) {
+          if (res.token) {
             // Storing the User data.
+            localStorage.setItem('user', JSON.stringify(res));
+            localStorage.setItem('token', res.token);
+            
             this.storageService
-              .store(AuthConstants.AUTH, res.userData)
+              .store(AuthConstants.AUTH, res)
               .then(res => {
+                console.log(res)
                 this.router.navigate(['home']);
               });
           } else {
-            this.toastService.presentToast('Incorrect username and password.');
+            this.toastService.presentToast('Incorrect email and password.');
           }
         },
         (error: any) => {
-          this.toastService.presentToast('Network Issue.');
+          // this.toastService.presentToast('Network Issue.');
+          this.toastService.presentToast(error.message);
+          
+          console.log(error)
         }
       );
     } else {
       this.toastService.presentToast(
-        'Please enter email/username or password.'
+        'Please enter email/email or password.'
       );
     }
   }

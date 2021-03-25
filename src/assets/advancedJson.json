@@ -1,0 +1,43 @@
+[{
+    "key": "address",
+    "type": "group",
+    "options":{
+        "children" : [{
+            "key" :"name",
+            "type": "input",
+            "options" :  {
+                "label" : "Nombvre",
+                "placeholder": "Max Lynch"
+            }
+        },
+        {
+            "key" :"street",
+            "type": "input",
+            "options" :  {
+                "label" : "Street",
+                "placeholder": "Wisconsin Ave 1"
+            }  
+        }
+
+        ]
+    }
+},
+{
+    "key": "phone",
+    "type": "array",
+    "options":{
+        "children" : [{
+            "key" :"phonenumber",
+            "type": "input",
+            "options" :  {
+                "label" : "Phone n°",
+                "placeholder": "4952-5231"
+            }
+        }
+
+        ]
+    }
+}
+
+
+]
