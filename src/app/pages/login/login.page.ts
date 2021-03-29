@@ -41,6 +41,7 @@ export class LoginPage implements OnInit {
     if (this.validateInputs()) {
       this.authService.login(this.postData).subscribe(
         (res: any) => {
+          console.log(res)
           if (res.token) {
             // Storing the User data.
             localStorage.setItem('user', JSON.stringify(res));
