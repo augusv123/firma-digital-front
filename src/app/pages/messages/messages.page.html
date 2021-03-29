@@ -4,9 +4,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding="true">
+  <ion-item>
+    <ion-label>Seleccionar Formulario</ion-label>
+    <ion-select  [(ngModel)]="selectedFile" (ionChange)="getSignedForm(selectedFile)" okText="Okay" cancelText="Dismiss">
+      <ion-select-option *ngFor="let file of signedFiles"  value="{{file}}" >{{file| filepipe}}</ion-select-option>
+      <ion-select-option   value="none" >sin seleccion</ion-select-option>
     
-  <object #obj  [data]="blob"
+    </ion-select>
+  </ion-item>
+  <object *ngIf="fetched" #obj  [data]="blob"
 
   type="application/pdf"
   style="height:600px;width:100%;margin:0px;"

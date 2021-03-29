@@ -12,7 +12,12 @@ const routes: Routes = [
   {
     path: '',
     component: DocumentGeneratorPage
-  }
+  },
+  {
+    path: '/:documentId',
+    component: DocumentGeneratorPage
+  },
+
 ];
 
 @NgModule({

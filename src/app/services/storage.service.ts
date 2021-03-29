@@ -46,5 +46,6 @@ export class StorageService {
 
   async clear() {
     await Storage.clear();
+    console.log("storage cleared")
   }
 }

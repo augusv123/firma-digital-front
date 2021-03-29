@@ -45,12 +45,21 @@ export class LoginPage implements OnInit {
             // Storing the User data.
             localStorage.setItem('user', JSON.stringify(res));
             localStorage.setItem('token', res.token);
-            
+            localStorage.setItem('avatarUrl', res.profile_photo_url);
+            this.authService.storeUserSubject(res)
             this.storageService
               .store(AuthConstants.AUTH, res)
               .then(res => {
-                console.log(res)
-                this.router.navigate(['home']);
+           
+                if ( this.authService.redirectUrl && this.authService.redirectUrl != "/login") {
+                  console.log(this.authService.redirectUrl)
+                  this.router.navigate([this.authService.redirectUrl]);
+                  this.authService.redirectUrl = null;
+                }
+                else{
+                  this.router.navigate(['/home']);
+          
+                }
               });
           } else {
             this.toastService.presentToast('Incorrect email and password.');

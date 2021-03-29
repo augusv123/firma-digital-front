@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeGuard } from '../guards/home.guard';
+import { LoggedGuard } from '../guards/logged.guard';
 import { UserDataResolver } from '../resolvers/user-data.resolver';
 import { HomePage } from './home.page';
 
@@ -8,7 +9,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomePage,
-    canActivate: [HomeGuard],
+    canActivate: [HomeGuard,LoggedGuard],
     resolve: {
       userData: UserDataResolver
     },
@@ -43,6 +44,13 @@ const routes: Routes = [
               import('../pages/messages/messages.module').then(
                 m => m.MessagesPageModule
               )
+          },
+          {
+            path: ':filename',
+            loadChildren: () =>
+              import('../pages/messages/messages.module').then(
+                m => m.MessagesPageModule
+              )
           }
         ]
       },
@@ -56,7 +64,8 @@ const routes: Routes = [
                 m => m.DocumentGeneratorPageModule
               )
           }
-        ]
+        ],
+        canActivate: [LoggedGuard],
       },
       {
         path: 'settings',

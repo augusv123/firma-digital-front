@@ -26,4 +26,20 @@ export class VacacionesService {
     return this.http.post(url,{},{
       responseType: 'arraybuffer'} );
   }
+  sendMail(mail,filename){
+    const url = "http://localhost/tcpdf/public/api/sendMail?mail="+mail+"&filename="+filename ;
+
+    return this.http.get(url,{ } );
+  }
+  getAllSignedFiles(){
+    const url = "http://localhost/tcpdf/public/api/getAllSignedFiles" ;
+
+    return this.http.get(url,{ } );
+  }
+  getSignedForm(filename){
+    const url = "http://localhost/tcpdf/public/api/getSignedForm?filename="+filename ;
+    
+    return this.http.get(url,{
+      responseType: 'arraybuffer'} );
+  }
 }

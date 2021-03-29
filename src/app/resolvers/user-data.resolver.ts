@@ -9,6 +9,7 @@ export class UserDataResolver {
 
   resolve() {
     console.log('Hello');
-    return this.authService.getUserData();
+    // return this.authService.getUserData();
+    return this.authService.refreshUserData();
   }
 }

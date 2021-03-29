@@ -34,19 +34,28 @@ export class FormsPage implements OnInit {
   categorias = []
   files 
   selectedFile
+  avatarUrl  : string =""
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
      private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe) {
     this.myForm = this.fb.group({})
     const newFormControl = new FormControl()
     this.myForm.addControl("texto",newFormControl)
+    this.avatarUrl = localStorage.getItem('avatarUrl')
+
    }
 
   ngOnInit() {
     this.getAllFiles()
   }
+  clearControls(){
+    this.myForm = this.fb.group({})
+    this.simpleForm = null
+    this.categorias = []
+  }
 
   getForm(filename){
-    console.log("calling function")
+    console.log(filename)
+    this.clearControls()
     this.formService.getForm(filename).subscribe( 
       res => {
         let obj = JSON.parse(res.toString());
@@ -109,6 +118,14 @@ export class FormsPage implements OnInit {
       (res: any) => { 
         console.log(res)
         this.downLoadFile(res, "application/pdf","pdf")
+        this.vacacionesService.sendMail(this.simpleForm.mail,this.simpleForm.title).subscribe(
+          res => {
+            console.log(res)
+          },
+          error => {
+            console.log(error)
+          }
+        )
      
       },
       (error: any) => {

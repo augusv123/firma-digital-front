@@ -11,6 +11,7 @@ import { VacacionesPage } from '../vacaciones/vacaciones.page';
 import { PerformancePage } from '../performance/performance.page';
 import { SituationUpdatePage } from '../situation-update/situation-update.page';
 import { FilepipePipe } from 'src/app/filepipe.pipe';
+import { SharedModuleModule } from 'src/app/shared/shared-module/shared-module.module';
 
 const routes: Routes = [
   {
@@ -24,10 +25,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModuleModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [FormsPage,FormTextPipe,VacacionesPage,PerformancePage,SituationUpdatePage,FilepipePipe],
+  declarations: [FormsPage,FormTextPipe,VacacionesPage,PerformancePage,SituationUpdatePage ],
   providers:    [ FormTextPipe ]
 })
 export class FormsPageModule {}

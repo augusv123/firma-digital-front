@@ -5,6 +5,7 @@ import FormJSon from '../../../assets/test.json';
 import AdvancedJSon from '../../../assets/advancedJson.json';
 import { FormService } from 'src/app/form.service';
 import { OptionsPagePage } from 'src/app/options-page/options-page.page';
+import { ActivatedRoute } from '@angular/router';
 
 
 export class Options {
@@ -54,12 +55,14 @@ export class CompleteDynamicForm {
   inputs : DynamicFormControl[]
   categoriesColor 
   title
-  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo"){
+  mail
+  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com"){
    
     this.inputs = dynamicform
     this.formText = formtext
     this.categoriesColor = categoriesColor
     this.title = title
+    this.mail = mail
   }
 }
 export class Subtitle{
@@ -92,8 +95,9 @@ export class DocumentGeneratorPage implements OnInit {
   categoriesColor
   title
   item={isValid:true}
+  mail
   subtitulosInputs : Subtitle[] = []
-  constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController) {
+  constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,private route:ActivatedRoute) {
     this.newForm = this.fb.group({})
     // this.createAdvancedControls(this.advancedForm)
     console.log(this.myForm)
@@ -104,6 +108,7 @@ export class DocumentGeneratorPage implements OnInit {
    }
 
   ngOnInit() {
+    console.log(this.route.snapshot.paramMap.get('documentId'));
   }
   submitForm(){
     console.log("submited")
@@ -175,23 +180,27 @@ export class DocumentGeneratorPage implements OnInit {
     addChildren(parent? : DynamicFormControl ){
    
     const dinamicFormControl = new DynamicFormControl()
+    dinamicFormControl.key = parent.key + "child"
 
     if(parent.children == undefined){
 
+      console.log("undefined children")
     parent = new DynamicFormControl()
     parent.children.push(dinamicFormControl)
     this.dynamicform.push(parent)
     }
     else{
+      console.log("creating child")
 
     parent.children.push(dinamicFormControl)
+    parent.options.type = "array"
     console.log(this.dynamicform)
     console.log(JSON.stringify(this.dynamicform))
     
     }
   }
   saveForm(){
-    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title)
+    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail)
     
     this.formService.requestVacations(completedynamicForm).subscribe(
       res => {
@@ -299,7 +308,8 @@ async openOptionsModal(input : DynamicFormControl) {
 async presentToast(message) {
   const toast = await this.toastController.create({
     message: message,
-    duration: 4000
+    duration: 4000,
+    position: 'top'
   });
   toast.present();
 }

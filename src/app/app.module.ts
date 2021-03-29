@@ -14,7 +14,7 @@ import { DocumentGeneratorPageModule } from './pages/document-generator/document
 import { OptionsPagePageModule } from './options-page/options-page.module';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent, ],
   entryComponents: [],
   imports: [
     BrowserModule,
