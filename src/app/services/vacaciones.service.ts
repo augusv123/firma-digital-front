@@ -16,28 +16,28 @@ export class VacacionesService {
 
   
   requestVacations(form) {
-    const url = "firmasbackend.grupopiero.com/api/createSignedPDF" ;
+    const url = "http://localhost:8080/firma-digita-back/public/api/createSignedPDF" ;
     return this.http.post(url,{form },{
       responseType: 'arraybuffer'} );
   }
   getPDF(){
-    const url = "firmasbackend.grupopiero.com/api/test" ;
+    const url = "http://localhost:8080/firma-digita-back/public/api/test" ;
     
     return this.http.post(url,{},{
       responseType: 'arraybuffer'} );
   }
   sendMail(mail,filename){
-    const url = "firmasbackend.grupopiero.com/api/sendMail?mail="+mail+"&filename="+filename ;
+    const url = "http://localhost:8080/firma-digita-back/public/api/sendMail?mail="+mail+"&filename="+filename ;
 
     return this.http.get(url,{ } );
   }
   getAllSignedFiles(){
-    const url = "firmasbackend.grupopiero.com/api/getAllSignedFiles" ;
+    const url = "http://localhost:8080/firma-digita-back/public/api/getAllSignedFiles" ;
 
     return this.http.get(url,{ } );
   }
   getSignedForm(filename){
-    const url = "firmasbackend.grupopiero.com/api/getSignedForm?filename="+filename ;
+    const url = "http://localhost:8080/firma-digita-back/public/api/getSignedForm?filename="+filename ;
     
     return this.http.get(url,{
       responseType: 'arraybuffer'} );

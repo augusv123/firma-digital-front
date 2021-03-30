@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'firmasbackend.grupopiero.com/api/'
+  apiUrl: 'http://localhost:8080/firma-digita-back/public/api/'
 
 };
