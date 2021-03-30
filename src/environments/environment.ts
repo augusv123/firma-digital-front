@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/firma-digital-back/public/api/'
+  apiUrl: 'firmasbackend.grupopiero.com/api/'
 };
 
 /*

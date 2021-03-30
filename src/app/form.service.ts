@@ -15,22 +15,22 @@ export class FormService {
 
   
   requestVacations(data) {
-    const url = "http://localhost/firma-digital-back/public/api/saveForm" ;
+    const url = "firmasbackend.grupopiero.com/api/saveForm" ;
     
     return this.http.post(url,data,{} );
   }
   getForm(filename){
-    const url = "http://localhost/firma-digital-back/public/api/getForm?filename="+filename ;
+    const url = "firmasbackend.grupopiero.com/api/getForm?filename="+filename ;
     
     return this.http.get(url,{} );
   }
   getAllFiles(){
-    const url = "http://localhost/firma-digital-back/public/api/getAllFiles" ;
+    const url = "firmasbackend.grupopiero.com/api/getAllFiles" ;
     
     return this.http.get(url,{} );
   }
   sendHtmlTest(htmlform){
-    const url = "http://localhost/firma-digital-back/public/api/sendHtmlTest" ;
+    const url = "firmasbackend.grupopiero.com/api/sendHtmlTest" ;
     
     return this.http.post(url,htmlform,{} );
   }

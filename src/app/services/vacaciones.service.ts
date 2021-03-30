@@ -16,28 +16,28 @@ export class VacacionesService {
 
   
   requestVacations(form) {
-    const url = "http://localhost/firma-digital-back/public/api/createSignedPDF" ;
+    const url = "firmasbackend.grupopiero.com/api/createSignedPDF" ;
     return this.http.post(url,{form },{
       responseType: 'arraybuffer'} );
   }
   getPDF(){
-    const url = "http://localhost/firma-digital-back/public/api/test" ;
+    const url = "firmasbackend.grupopiero.com/api/test" ;
     
     return this.http.post(url,{},{
       responseType: 'arraybuffer'} );
   }
   sendMail(mail,filename){
-    const url = "http://localhost/firma-digital-back/public/api/sendMail?mail="+mail+"&filename="+filename ;
+    const url = "firmasbackend.grupopiero.com/api/sendMail?mail="+mail+"&filename="+filename ;
 
     return this.http.get(url,{ } );
   }
   getAllSignedFiles(){
-    const url = "http://localhost/firma-digital-back/public/api/getAllSignedFiles" ;
+    const url = "firmasbackend.grupopiero.com/api/getAllSignedFiles" ;
 
     return this.http.get(url,{ } );
   }
   getSignedForm(filename){
-    const url = "http://localhost/firma-digital-back/public/api/getSignedForm?filename="+filename ;
+    const url = "firmasbackend.grupopiero.com/api/getSignedForm?filename="+filename ;
     
     return this.http.get(url,{
       responseType: 'arraybuffer'} );
