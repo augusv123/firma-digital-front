@@ -16,28 +16,28 @@ export class VacacionesService {
 
   
   requestVacations(form) {
-    const url = "http://localhost/tcpdf/public/api/createSignedPDF" ;
+    const url = "http://localhost/firma-digital-back/public/api/createSignedPDF" ;
     return this.http.post(url,{form },{
       responseType: 'arraybuffer'} );
   }
   getPDF(){
-    const url = "http://localhost/tcpdf/public/api/test" ;
+    const url = "http://localhost/firma-digital-back/public/api/test" ;
     
     return this.http.post(url,{},{
       responseType: 'arraybuffer'} );
   }
   sendMail(mail,filename){
-    const url = "http://localhost/tcpdf/public/api/sendMail?mail="+mail+"&filename="+filename ;
+    const url = "http://localhost/firma-digital-back/public/api/sendMail?mail="+mail+"&filename="+filename ;
 
     return this.http.get(url,{ } );
   }
   getAllSignedFiles(){
-    const url = "http://localhost/tcpdf/public/api/getAllSignedFiles" ;
+    const url = "http://localhost/firma-digital-back/public/api/getAllSignedFiles" ;
 
     return this.http.get(url,{ } );
   }
   getSignedForm(filename){
-    const url = "http://localhost/tcpdf/public/api/getSignedForm?filename="+filename ;
+    const url = "http://localhost/firma-digital-back/public/api/getSignedForm?filename="+filename ;
     
     return this.http.get(url,{
       responseType: 'arraybuffer'} );

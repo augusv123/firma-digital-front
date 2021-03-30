@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/tcpdf/public/api/'
+  apiUrl: 'http://localhost/firma-digital-back/public/api/'
 };
 
 /*
