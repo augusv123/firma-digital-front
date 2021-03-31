@@ -13,6 +13,7 @@ import { FormsPageModule } from './pages/forms/forms.module';
 import { DocumentGeneratorPageModule } from './pages/document-generator/document-generator.module';
 import { OptionsPagePageModule } from './options-page/options-page.module';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [AppComponent, ],
   entryComponents: [],
@@ -35,7 +36,10 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }
+  },
+  {provide : LocationStrategy ,
+    useClass: HashLocationStrategy
+   },
   ],
   bootstrap: [AppComponent]
 })
