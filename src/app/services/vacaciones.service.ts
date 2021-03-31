@@ -16,23 +16,23 @@ export class VacacionesService {
 
   
   requestVacations(form) {
-    const url = "http://bpm.backend.com:8080/api/createSignedPDF" ;
+    const url = environment.apiUrl + "createSignedPDF" ;
     return this.http.post(url,{form },{
       responseType: 'arraybuffer'} );
   }
   getPDF(){
-    const url = "http://bpm.backend.com:8080/api/test" ;
+    const url = environment.apiUrl + "test" ;
     
     return this.http.post(url,{},{
       responseType: 'arraybuffer'} );
   }
   sendMail(mail,filename){
-    const url = "http://bpm.backend.com:8080/api/sendMail?mail="+mail+"&filename="+filename ;
+    const url = environment.apiUrl + "sendMail?mail="+mail+"&filename="+filename ;
 
     return this.http.get(url,{ } );
   }
   getAllSignedFiles(){
-    const url = "http://bpm.backend.com:8080/api/getAllSignedFiles" ;
+    const url = environment.apiUrl + "getAllSignedFiles" ;
 
     return this.http.get(url,{ } );
   }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://bpm.backend.com:8080/api/'
+  apiUrl: 'http://bpm-back.grupopiero.com:8080/api/'
 };
 
 /*

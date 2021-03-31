@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,22 +16,22 @@ export class FormService {
 
   
   requestVacations(data) {
-    const url = "http://bpm.backend.com:8080/api/saveForm" ;
+    const url = environment.apiUrl + "saveForm" ;
     
     return this.http.post(url,data,{} );
   }
   getForm(filename){
-    const url = "http://bpm.backend.com:8080/api/getForm?filename="+filename ;
+    const url = environment.apiUrl + "getForm?filename="+filename ;
     
     return this.http.get(url,{} );
   }
   getAllFiles(){
-    const url = "http://bpm.backend.com:8080/api/getAllFiles" ;
+    const url = environment.apiUrl + "getAllFiles" ;
     
     return this.http.get(url,{} );
   }
   sendHtmlTest(htmlform){
-    const url = "http://bpm.backend.com:8080/api/sendHtmlTest" ;
+    const url = environment.apiUrl + "sendHtmlTest" ;
     
     return this.http.post(url,htmlform,{} );
   }
