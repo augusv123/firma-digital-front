@@ -12,7 +12,6 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   post(serviceName: string, data: any) {
-    console.log(data)
     const url = environment.apiUrl + serviceName;
     // return this.http.post(url, JSON.stringify(data), this.options);
     return this.http.post(url,data, this.options);
