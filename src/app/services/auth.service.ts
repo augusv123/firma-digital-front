@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthConstants } from './../config/auth-constants';
 import { HttpService } from './http.service';
 import { StorageService } from './storage.service';
@@ -16,7 +18,7 @@ export class AuthService {
   constructor(
     private httpService: HttpService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router , private http : HttpClient
   ) {}
 
   getUserData() {
@@ -28,9 +30,19 @@ export class AuthService {
   login(postData: any): Observable<any> {
     return this.httpService.post('login', postData);
   }
+  getUsers() {
+    const url = environment.apiUrl + "getUsers" ;
+
+    return this.http.get(url,{ } );
+  }
 
   signup(postData: any): Observable<any> {
     return this.httpService.post('register', postData);
+  }
+  isAdmin(){
+    const url = environment.apiUrl + "isAdmin" ;
+
+    return this.http.get(url,{ } );
   }
 
   logout() {
@@ -74,6 +86,7 @@ export class AuthService {
     return true;
 
   }
+  
   refreshUserData() {
     var user = localStorage.getItem('user')
     this.currentUser.next(user);

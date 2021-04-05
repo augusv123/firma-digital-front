@@ -31,13 +31,13 @@ export class VacacionesService {
 
     return this.http.get(url,{ } );
   }
-  getAllSignedFiles(){
-    const url = environment.apiUrl + "getAllSignedFiles" ;
+  getAllSignedFiles(id){
+    const url = environment.apiUrl + "getAllSignedFiles?id="+id ;
 
     return this.http.get(url,{ } );
   }
   getSignedForm(filename){
-    const url = "http://bpm.backend.com:8080/api/getSignedForm?filename="+filename ;
+    const url = environment.apiUrl + "getSignedForm?filename="+filename ;
     
     return this.http.get(url,{
       responseType: 'arraybuffer'} );

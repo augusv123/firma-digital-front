@@ -1,18 +1,70 @@
+<style>
+  :root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+</style>
 <ion-header>
   <ion-toolbar>
     <ion-title>Documentos</ion-title>
   </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content padding="true">
-  <ion-item>
+ <ion-button *ngIf="userSelected && hasAdminRole" (click)="reset()">
+   <ion-icon name="arrow-back"></ion-icon> atras
+ </ion-button>
+  <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
+  <ng-container *ngIf="!userSelected">
+
+  <ion-list *ngIf="isAdmin()">
+    <ion-list-header style="font-size: 20px;
+    font-weight: 600;">
+      Listado de usuarios
+    </ion-list-header>
+
+    <ion-item *ngFor="let user of filteredUsers">
+      <ion-avatar slot="start" >
+        <img  [src]="user.profile_photo_url" >
+      </ion-avatar>
+      <ion-label>
+        <h2>{{user.name}}</h2>
+        <h3>{{user.userName}}</h3>
+        <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+      </ion-label>
+      <ion-button slot="end" (click)="getAllSignedFiles(user)">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ng-container>
+
+  <!-- <ion-item>
     <ion-label>Seleccionar Formulario</ion-label>
     <ion-select  [(ngModel)]="selectedFile" (ionChange)="getSignedForm(selectedFile)" okText="Okay" cancelText="Dismiss">
       <ion-select-option *ngFor="let file of signedFiles"  value="{{file}}" >{{file| filepipe}}</ion-select-option>
       <ion-select-option   value="none" >sin seleccion</ion-select-option>
     
     </ion-select>
-  </ion-item>
+  </ion-item> -->
+  <ng-container  *ngIf="userSelected">
+  
+    <ion-list >
+      <ion-item *ngFor="let file of signedFiles" >
+        <ion-label>
+          <h2>{{file| filepipe}}</h2>
+          <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+        </ion-label>
+        <ion-button slot="end" (click)="getSignedForm(file)">
+          <ion-icon name="eye"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+  </ng-container>
   <object *ngIf="fetched" #obj  [data]="blob"
 
   type="application/pdf"

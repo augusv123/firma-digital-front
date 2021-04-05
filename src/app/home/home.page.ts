@@ -10,7 +10,7 @@ export class HomePage implements OnInit {
   adminroles
   constructor(private authService : AuthService) { 
 
-    this.adminroles = ['admin']
+    this.adminroles = ['user']
   }
 
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { VacacionesService } from 'src/app/services/vacaciones.service';
 
 @Component({
@@ -15,11 +16,36 @@ export class MessagesPage implements OnInit {
   signedFiles
   file
   fetched = false
-  constructor(private sanitizer:DomSanitizer,private documentsService: VacacionesService,private route : ActivatedRoute) { }
+  users
+  filter = ""
+  filteredUsers
+  userSelected
+  hasAdminRole= false
+  constructor(private sanitizer:DomSanitizer,private documentsService: VacacionesService,private route : ActivatedRoute,private authService : AuthService) { }
 
   ngOnInit() {
     const filename = this.route.snapshot.paramMap.get('filename');
     console.log(filename)
+    console.log()
+    this.authService.isAdmin().subscribe(
+      res => {
+       if(res){
+        this.getUsers()
+        this.hasAdminRole = true
+         
+       }
+       else{
+        this.authService.getUserSubject().subscribe(res => {
+          var user =  JSON.parse(res)
+          this.getAllSignedFiles(user)
+        },
+        error => console.log(error))
+       }
+      },
+      error => {
+        console.log(error)
+      }
+    )
     if(filename){
       this.getSignedForm("public/signedForms/"+filename+".pdf")
    
@@ -27,13 +53,16 @@ export class MessagesPage implements OnInit {
     // this.blob = this.getSafeUrl( this.data.fileurl)
     // this.getPDF()
     // this.notifySignature()
-    this.getAllSignedFiles()
+    // this.getAllSignedFiles()
  
   }
-  getAllSignedFiles(){
-    this.documentsService.getAllSignedFiles().subscribe(
+  getAllSignedFiles(user){
+    this.userSelected = user
+    const id  = user.id
+    this.documentsService.getAllSignedFiles(id).subscribe(
       res => {
         this.signedFiles = res
+        console.log(res)
       },
       error => {
         console.log(error)
@@ -45,6 +74,7 @@ export class MessagesPage implements OnInit {
 
       this.documentsService.getSignedForm(filename).subscribe(
         res => {
+          console.log(res)
           this.blob = new Blob([res], { type: "application/pdf"});
           this.fileurl = URL.createObjectURL(this.blob);
       this.blob = this.getSafeUrl( this.fileurl)
@@ -85,6 +115,35 @@ export class MessagesPage implements OnInit {
     //     console.log(error)
     //   }
     // )
+  }
+  getUsers(){
+    this.authService.getUsers().subscribe(
+      res => {
+        console.log(res)
+        this.users = res
+        this.filteredUsers = res
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+  isAdmin(){
+    return this.hasAdminRole
+  }
+  searchAndFilterItems() {
+    
+    // const filteredItems = this.users.filter(item => {
+    //     // Apply filters
+    // });
+    this.filteredUsers  = this.users.filter(item => {
+      return item.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
+    });
+  }
+  reset(){
+    this.userSelected = null
+    this.selectedFile = null
+    this.fetched = false
   }
 
 }

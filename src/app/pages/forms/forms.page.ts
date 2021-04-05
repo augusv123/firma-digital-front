@@ -22,6 +22,7 @@ export class FinalForm{
 
 export class FormsPage implements OnInit {
   myForm : FormGroup;
+  
   newForm : FormGroup;
   simpleForm ;
   count = 0
@@ -35,6 +36,8 @@ export class FormsPage implements OnInit {
   files 
   selectedFile
   avatarUrl  : string =""
+  filteredForms
+  filter
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
      private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe) {
     this.myForm = this.fb.group({})
@@ -55,6 +58,7 @@ export class FormsPage implements OnInit {
 
   getForm(filename){
     console.log(filename)
+    this.selectedFile = filename
     this.clearControls()
     this.formService.getForm(filename).subscribe( 
       res => {
@@ -156,10 +160,25 @@ export class FormsPage implements OnInit {
       res => {
         console.log(res)
         this.files = res
+        this.filteredForms = res
+
       },
       error => {
         console.log(error)
       }
     )
+  }
+  searchAndFilterItems() {
+    
+    // const filteredItems = this.users.filter(item => {
+    //     // Apply filters
+    // });
+    this.filteredForms  = this.files.filter(file => {
+      file = file.replace( "public/forms/", ""  )
+      file = file.replace( ".json", ""  )
+
+      return file.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
+
+    });
   }
 }

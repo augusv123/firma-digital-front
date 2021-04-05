@@ -18,13 +18,25 @@
       <ion-select-option value="custom">Personalizado</ion-select-option>
     </ion-select>
   </ion-item> -->
-  <ion-item>
+  <!-- <ion-item>
     <ion-label>Seleccionar Formulario</ion-label>
     <ion-select  [(ngModel)]="selectedFile" (ionChange)="getForm(selectedFile)" okText="Okay" cancelText="Dismiss">
       <ion-select-option *ngFor="let file of files"  value="{{file}}" >{{file | filepipe}}</ion-select-option>
     
     </ion-select>
-  </ion-item>
+  </ion-item> -->
+  <ion-list>
+    <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
+    <ion-list-header> Seleccion de formulario</ion-list-header>
+    <ion-item *ngFor="let file of filteredForms">
+        <ion-label>
+          {{file | filepipe}}
+        </ion-label>
+        <ion-button (click)="getForm(file)" slot="end">
+          <ion-icon name="eye"></ion-icon>
+        </ion-button>
+    </ion-item>
+  </ion-list>
 
   <ng-container *ngIf="loaded" style="margin-top: 20px;">
 

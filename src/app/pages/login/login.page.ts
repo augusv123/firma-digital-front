@@ -12,7 +12,7 @@ import { ToastService } from './../../services/toast.service';
 })
 export class LoginPage implements OnInit {
   postData = {
-    email: '',
+    userName: '',
     password: ''
   };
 
@@ -26,12 +26,12 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   validateInputs() {
-    let email = this.postData.email.trim();
+    let userName = this.postData.userName.trim();
     let password = this.postData.password.trim();
     return (
-      this.postData.email &&
+      this.postData.userName &&
       this.postData.password &&
-      email.length > 0 &&
+      userName.length > 0 &&
       password.length > 0
     );
   }
