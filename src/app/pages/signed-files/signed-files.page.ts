@@ -21,14 +21,15 @@ export class SignedFilesPage implements OnInit {
 
   ngOnInit() {
     this.avatarUrl = localStorage.getItem('avatarUrl')
-    const directory = this.route.snapshot.paramMap.get('directory');
+    var directory = this.route.snapshot.paramMap.get('directory');
     const id = this.route.snapshot.paramMap.get('id');
     const nombre = this.route.snapshot.paramMap.get('nombre');
     const carpeta = this.route.snapshot.paramMap.get('carpeta');
     var path = "public/signedForms/"+id+"/"+carpeta+"/"+nombre
     if(id && nombre && carpeta){
       this.getSignedForm(path)
-
+    const value = path.split("/");
+    directory = value[3]
     }
     // if(fulldirectory){
     //   this.getSignedForm(fulldirectory)
