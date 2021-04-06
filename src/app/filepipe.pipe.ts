@@ -11,8 +11,11 @@ export class FilepipePipe implements PipeTransform {
 
     value = value.replace( ".json", ""  )
     value = value.replace( ".pdf", ""  )
+
+    value = value.split("/");
+
     
-    return value;
+    return value[value.length -1 ];
   }
 
 }

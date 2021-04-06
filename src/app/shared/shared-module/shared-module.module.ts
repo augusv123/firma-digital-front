@@ -7,7 +7,7 @@ import { FilepipePipe } from 'src/app/filepipe.pipe';
 @NgModule({
   declarations: [FilepipePipe],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   providers:    [ FilepipePipe ],
   exports: [

@@ -14,6 +14,7 @@ import { DocumentGeneratorPageModule } from './pages/document-generator/document
 import { OptionsPagePageModule } from './options-page/options-page.module';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { PDFViewPageModule } from './pdfview/pdfview.module';
 @NgModule({
   declarations: [AppComponent, ],
   entryComponents: [],
@@ -23,6 +24,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     AppRoutingModule,
     OptionsPagePageModule,
     HttpClientModule,
+    PDFViewPageModule,
     
   ],
   providers: [

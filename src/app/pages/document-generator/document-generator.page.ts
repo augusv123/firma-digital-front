@@ -96,6 +96,7 @@ export class DocumentGeneratorPage implements OnInit {
   title
   item={isValid:true}
   mail
+  avatarUrl
   subtitulosInputs : Subtitle[] = []
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,private route:ActivatedRoute) {
     this.newForm = this.fb.group({})
@@ -109,6 +110,8 @@ export class DocumentGeneratorPage implements OnInit {
 
   ngOnInit() {
     console.log(this.route.snapshot.paramMap.get('documentId'));
+    this.avatarUrl = localStorage.getItem('avatarUrl')
+
   }
   submitForm(){
     console.log("submited")
@@ -208,7 +211,8 @@ export class DocumentGeneratorPage implements OnInit {
         this.presentToast("Se genero con exito el nuevo formulario: " +this.title)
       },
       error =>  {
-        this.presentToast("Oops, hubo un error " +this.title)
+        this.presentToast("Oops, hubo un error :   " + error.error)
+        // this.presentToast("Oops, hubo un error " +this.title)
 
         console.log(error)
       }

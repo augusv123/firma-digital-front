@@ -5,12 +5,12 @@
   }
 </style>
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Documentos</ion-title>
+  <ion-toolbar  style="--background: #064380; color: white;">
+    <ion-title>Documentos Firmados</ion-title>
+      <ion-avatar slot="end" style="padding: 10px;">
+        <img  [src]="avatarUrl" >
+      </ion-avatar>
   </ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button></ion-back-button>
-  </ion-buttons>
 </ion-header>
 
 <ion-content padding="true">
@@ -58,19 +58,18 @@
           <h2>{{file| filepipe}}</h2>
           <!-- <p>Listen, I've had a pretty messed up day...</p> -->
         </ion-label>
-        <ion-button slot="end" (click)="getSignedForm(file)">
-          <ion-icon name="eye"></ion-icon>
+        <ion-button [routerLink]="['signed-files', file]" >
+        <ion-icon name="arrow-forward"></ion-icon>
+
         </ion-button>
+        <!-- <ion-button slot="end" (click)="getSignedForm(file)">
+        <ion-icon name="eye"></ion-icon>
+        </ion-button> -->
       </ion-item>
     </ion-list>
 
   </ng-container>
-  <object *ngIf="fetched" #obj  [data]="blob"
 
-  type="application/pdf"
-  style="height:600px;width:100%;margin:0px;"
-  >
-  </object>
   
   
 

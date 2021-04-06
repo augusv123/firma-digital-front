@@ -5,17 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MessagesPage } from './messages.page';
-import { FormTextPipe } from 'src/app/form-text.pipe';
-import { FilepipePipe } from 'src/app/filepipe.pipe';
+import { SignedFilesPage } from './signed-files.page';
 import { SharedModuleModule } from 'src/app/shared/shared-module/shared-module.module';
-import { PDFViewPage } from 'src/app/pdfview/pdfview.page';
-import { PDFViewPageModule } from 'src/app/pdfview/pdfview.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: MessagesPage
+    component: SignedFilesPage
   }
 ];
 
@@ -25,10 +21,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     SharedModuleModule,
- 
     RouterModule.forChild(routes)
   ],
-
-  declarations: [MessagesPage],
+  declarations: [SignedFilesPage]
 })
-export class MessagesPageModule {}
+export class SignedFilesPageModule {}

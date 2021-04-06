@@ -31,8 +31,13 @@ export class VacacionesService {
 
     return this.http.get(url,{ } );
   }
-  getAllSignedFiles(id){
-    const url = environment.apiUrl + "getAllSignedFiles?id="+id ;
+  getAllSignedFiles(id,directory){
+    const url = environment.apiUrl + "getAllSignedFiles?id="+id+"&directory="+directory ;
+
+    return this.http.get(url,{ } );
+  }
+  getAllDirectories(id){
+    const url = environment.apiUrl + "getAllDirectories?id="+id ;
 
     return this.http.get(url,{ } );
   }

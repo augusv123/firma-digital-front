@@ -46,12 +46,19 @@ const routes: Routes = [
               )
           },
           {
-            path: ':filename',
+            path: 'signed-files/:directory',
             loadChildren: () =>
-              import('../pages/messages/messages.module').then(
-                m => m.MessagesPageModule
+            import('../pages/signed-files/signed-files.module').then(
+                m => m.SignedFilesPageModule
               )
-          }
+          },
+          {
+            path: 'view-file/:id/:carpeta/:nombre',
+            loadChildren: () =>
+            import('../pages/signed-files/signed-files.module').then(
+                m => m.SignedFilesPageModule
+              )
+          },
         ]
       },
       {
@@ -64,6 +71,27 @@ const routes: Routes = [
                 m => m.DocumentGeneratorPageModule
               )
           }
+        ],
+        canActivate: [LoggedGuard],
+      },
+      {
+        path: 'signed-files',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/signed-files/signed-files.module').then(
+                m => m.SignedFilesPageModule
+              )
+          },
+          {
+            path: ':directory',
+            loadChildren: () =>
+              import('../pages/signed-files/signed-files.module').then(
+                m => m.SignedFilesPageModule
+              )
+          },
+          
         ],
         canActivate: [LoggedGuard],
       },
