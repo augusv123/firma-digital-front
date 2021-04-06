@@ -43,7 +43,7 @@ export class MessagesPage implements OnInit {
        else{
         this.authService.getUserSubject().subscribe(res => {
           var user =  JSON.parse(res)
-          this.getAllSignedFiles(user)
+          // this.getAllSignedFiles(user)
           this.getAllDirectories(user)
           
         },
@@ -64,18 +64,18 @@ export class MessagesPage implements OnInit {
     // this.getAllSignedFiles()
  
   }
-  getAllSignedFiles(user){
-    this.userSelected = user
-    const id  = user.id
-    this.documentsService.getAllSignedFiles(id).subscribe(
-      res => {
-        this.signedFiles = res
-        console.log(res)
-      },
-      error => {
-        console.log(error)
-      })
-    }
+  // getAllSignedFiles(user){
+  //   this.userSelected = user
+  //   const id  = user.id
+  //   this.documentsService.getAllSignedFiles(id,"asd").subscribe(
+  //     res => {
+  //       this.signedFiles = res
+  //       console.log(res)
+  //     },
+  //     error => {
+  //       console.log(error)
+  //     })
+  //   }
     getAllDirectories(user){
     this.userSelected = user
     const id  = user.id
