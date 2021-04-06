@@ -122,14 +122,7 @@ export class FormsPage implements OnInit {
       (res: any) => { 
         console.log(res)
         this.downLoadFile(res, "application/pdf","pdf")
-        this.vacacionesService.sendMail(this.simpleForm.mail,this.simpleForm.title).subscribe(
-          res => {
-            console.log(res)
-          },
-          error => {
-            console.log(error)
-          }
-        )
+     
      
       },
       (error: any) => {
