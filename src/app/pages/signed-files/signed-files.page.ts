@@ -25,7 +25,7 @@ export class SignedFilesPage implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const nombre = this.route.snapshot.paramMap.get('nombre');
     const carpeta = this.route.snapshot.paramMap.get('carpeta');
-    var path = id+"/"+carpeta+"/"+nombre
+    var path = "public/signedForms/"+id+"/"+carpeta+"/"+nombre
     if(id && nombre && carpeta){
       this.getSignedForm(path)
 
