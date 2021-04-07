@@ -56,7 +56,7 @@ export class AuthService {
 
   storeUserSubject(user){
     this.currentUser.next(user)
-    console.log(this.currentUser)
+
   
   }
   getUserSubject(){
@@ -76,7 +76,7 @@ export class AuthService {
     //   return true
     // }
     for( const oneRole of roles){
-      if(!this.currentUser.getValue() || !JSON.parse(this.currentUser.getValue()).rolenames.includes(oneRole)){
+      if(!this.currentUser.getValue() || !this.currentUser.getValue().rolenames.includes(oneRole)){
         return false;
 
       }
@@ -88,7 +88,8 @@ export class AuthService {
   }
   
   refreshUserData() {
-    var user = localStorage.getItem('user')
+    console.log("se llama al refre")
+    var user = JSON.parse(localStorage.getItem('user'))
     this.currentUser.next(user);
     // this.storageService.get(AuthConstants.USER).then(res => {
     //   console.log(res)

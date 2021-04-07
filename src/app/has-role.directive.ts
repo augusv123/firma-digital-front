@@ -11,11 +11,15 @@ export class HasRoleDirective implements OnInit {
   constructor(private authService : AuthService, private templateRef : TemplateRef<any> , private viewContainer : ViewContainerRef) { }
 
   ngOnInit() {
-    this.authService.getUserSubject().subscribe(_ => {
+    this.authService.getUserSubject().subscribe(res => {
+
+      
       if(this.authService.hasRoles(this.roles)){
+        console.log("tiene el rol de admin")
         this.viewContainer.createEmbeddedView(this.templateRef)
       }
       else{
+        console.log("no tiene el rol de admin")
         this.viewContainer.clear()
       }
     })

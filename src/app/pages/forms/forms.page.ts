@@ -57,7 +57,6 @@ export class FormsPage implements OnInit {
   }
 
   getForm(filename){
-    console.log(filename)
     this.selectedFile = filename
     this.clearControls()
     this.formService.getForm(filename).subscribe( 
@@ -75,7 +74,6 @@ export class FormsPage implements OnInit {
         this.categorias = this.categorias.filter(function(elem, index, self) {
           return index === self.indexOf(elem);
         })
-        console.log(res)
         this.loaded = true
       },
       error => {
@@ -151,7 +149,6 @@ export class FormsPage implements OnInit {
   getAllFiles(){
     this.formService.getAllFiles().subscribe( 
       res => {
-        console.log(res)
         this.files = res
         this.filteredForms = res
 

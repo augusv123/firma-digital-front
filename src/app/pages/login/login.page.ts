@@ -23,7 +23,10 @@ export class LoginPage implements OnInit {
     private toastService: ToastService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+ 
+    
+  }
 
   validateInputs() {
     let userName = this.postData.userName.trim();
@@ -49,7 +52,7 @@ export class LoginPage implements OnInit {
             this.storageService
               .store(AuthConstants.AUTH, res)
               .then(res => {
-           
+                console.log("intentando redirigir")
                 if ( this.authService.redirectUrl && this.authService.redirectUrl != "/login") {
                   console.log(this.authService.redirectUrl)
                   this.router.navigate([this.authService.redirectUrl]);

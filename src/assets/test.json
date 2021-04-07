@@ -1,43 +1,25 @@
-[
-    {
-        "key":"notes",
-        "type": "text",
-        "options":{
-            "label": "Additional notes for us"
-        }
-    },
-    {
-        "key":"birthday",
-        "type": "date",
-        "options":{
-            "label": "Your birthday"
-        }
-    },
-    {
-        "key":"newsteller",
-        "type": "boolean",
-        "options":{
-            "label": "subscribe to our newsteller"
-        }
-    },
-    {
-        "key":"email",
-        "type": "input",
-        "options":{
-            "label": "Your email",
-            "placeholder" : "foobar@gmail.com",
-            "required": true
-        }
-    },
-    {
-        "key":"password",
-        "type": "input",
-        "options":{
-            "label": "Min. 6 characters",
-            "placeholder" : "123456",
-            "required": true,
-            "type": "password"
-        }
-    }
-
-]
+{
+	"id": 4560,
+	"name": "AUGUSTO",
+	"email": "augustovidal94@gmail.com",
+	"email_verified_at": null,
+	"current_team_id": null,
+	"profile_photo_path": null,
+	"created_at": "2021-04-05T17:34:26.000000Z",
+	"updated_at": "2021-04-07T13:54:51.000000Z",
+	"userName": "38794849",
+	"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9icG0tYmFjay5ncnVwb3BpZXJvLmNvbTo4MDgwXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjE3ODAzNjkxLCJleHAiOjE2MTc4MDcyOTEsIm5iZiI6MTYxNzgwMzY5MSwianRpIjoiRVFaWEdXaGs1RXJacHUyWSIsInN1YiI6NDU2MCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.ve_OGryRrTRr-8OfAseVcWfQC8k7PcqUD-ts3IktDFI",
+	"rolenames": ["admin"],
+	"profile_photo_url": "https://ui-avatars.com/api/?name=AUGUSTO&color=7F9CF5&background=EBF4FF",
+	"roles": [{
+		"id": 1,
+		"name": "admin",
+		"description": "Administrator",
+		"created_at": "2021-03-29T18:54:20.000000Z",
+		"updated_at": "2021-03-29T18:54:20.000000Z",
+		"pivot": {
+			"user_id": 4560,
+			"role_id": 1
+		}
+	}]
+}

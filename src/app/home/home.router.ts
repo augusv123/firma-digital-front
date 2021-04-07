@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../guards/admin.guard';
 import { HomeGuard } from '../guards/home.guard';
 import { LoggedGuard } from '../guards/logged.guard';
 import { UserDataResolver } from '../resolvers/user-data.resolver';
@@ -46,7 +47,7 @@ const routes: Routes = [
               )
           },
           {
-            path: 'signed-files/:directory',
+            path: 'signed-files/:directory/:userSelected',
             loadChildren: () =>
             import('../pages/signed-files/signed-files.module').then(
                 m => m.SignedFilesPageModule
@@ -72,7 +73,7 @@ const routes: Routes = [
               )
           }
         ],
-        canActivate: [LoggedGuard],
+        canActivate: [LoggedGuard,AdminGuard],
       },
       {
         path: 'signed-files',

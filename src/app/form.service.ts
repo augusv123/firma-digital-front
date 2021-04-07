@@ -35,5 +35,10 @@ export class FormService {
     
     return this.http.post(url,htmlform,{} );
   }
+  delete(filename){
+    const url = environment.apiUrl + "delete?filename="+filename ;
+    
+    return this.http.post(url,{filename} );
+  }
 
 }

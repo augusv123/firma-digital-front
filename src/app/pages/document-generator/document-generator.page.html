@@ -8,6 +8,17 @@
 </ion-header>
 <ion-content >
 
+  <ion-segment [(ngModel)]="mode" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="create">
+      <ion-label>Crear</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="delete">
+      <ion-label>Eliminar</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="mode">
+
+  <ng-container *ngSwitchCase="'create'">
 <ion-grid padding="true">
   <ion-row>
     <ion-col>
@@ -220,4 +231,22 @@
     </ion-row>
 
   </ion-grid>
+</ng-container>
+<ng-container *ngSwitchCase="'delete'" >
+  <ion-list>
+    <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
+    <ion-list-header> Seleccion de formulario</ion-list-header>
+    <ion-item *ngFor="let file of filteredForms">
+        <ion-label>
+          {{file | filepipe}}
+        </ion-label>
+        <ion-button color="danger" (click)="delete(file)" slot="end">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ng-container>
+</div>
+
 </ion-content>

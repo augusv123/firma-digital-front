@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { DocumentGeneratorPage } from './document-generator.page';
 import { FormTextPipe } from 'src/app/form-text.pipe';
 import {IonicColorPickerModule} from 'ionic-color-picker';
+import { SharedModuleModule } from 'src/app/shared/shared-module/shared-module.module';
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +26,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModuleModule,
     ReactiveFormsModule,
     IonicColorPickerModule,
     RouterModule.forChild(routes)

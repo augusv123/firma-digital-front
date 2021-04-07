@@ -37,10 +37,11 @@ export class SignedFilesPage implements OnInit {
    
     
     console.log(directory)
+    const userSelected = this.route.snapshot.paramMap.get('userSelected');
 
     this.authService.getUserSubject().subscribe(res => {
         var user =  JSON.parse(res)
-        this.getAllSignedFiles(user,directory)
+        this.getAllSignedFiles(userSelected,directory)
         
       },
       error => console.log(error))
@@ -49,8 +50,7 @@ export class SignedFilesPage implements OnInit {
   }
   
   getAllSignedFiles(user,directory){
-    this.userSelected = user
-    const id  = user.id
+    const id  = user
     this.documentsService.getAllSignedFiles(id,directory).subscribe(
       res => {
         this.signedFiles = res

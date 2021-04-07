@@ -42,9 +42,9 @@ export class MessagesPage implements OnInit {
        }
        else{
         this.authService.getUserSubject().subscribe(res => {
-          var user =  JSON.parse(res)
+         
           // this.getAllSignedFiles(user)
-          this.getAllDirectories(user)
+          this.getAllDirectories(JSON.parse(res))
           
         },
         error => console.log(error))

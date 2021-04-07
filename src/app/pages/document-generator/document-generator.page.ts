@@ -93,10 +93,14 @@ export class DocumentGeneratorPage implements OnInit {
   loaded = false
   pruebadevariable = "ahroa"
   categoriesColor
+  filteredForms
+  filter
   title
   item={isValid:true}
   mail
   avatarUrl
+  files
+  mode = "create"
   subtitulosInputs : Subtitle[] = []
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,private route:ActivatedRoute) {
     this.newForm = this.fb.group({})
@@ -105,10 +109,11 @@ export class DocumentGeneratorPage implements OnInit {
     this.dynamicform = []
 
     this.addInput()
-    // this.getAllFiles()
    }
 
   ngOnInit() {
+    this.getAllFiles()
+
     console.log(this.route.snapshot.paramMap.get('documentId'));
     this.avatarUrl = localStorage.getItem('avatarUrl')
 
@@ -222,6 +227,9 @@ export class DocumentGeneratorPage implements OnInit {
     this.formService.getAllFiles().subscribe( 
       res => {
         console.log(res)
+        this.files = res
+        this.filteredForms = res
+
       },
       error => {
         console.log(error)
@@ -329,6 +337,32 @@ doReorder(ev: CustomEvent<any>,radiok : IonRadioGroup) {
   // where the gesture ended. This method can also be called directly
   // by the reorder group
   ev.detail.complete();
+}
+segmentChanged(ev: any) {
+  console.log('Segment changed', ev);
+}
+
+searchAndFilterItems() {
+    
+  // const filteredItems = this.users.filter(item => {
+  //     // Apply filters
+  // });
+  this.filteredForms  = this.files.filter(file => {
+    file = file.replace( "public/forms/", ""  )
+    file = file.replace( ".json", ""  )
+
+    return file.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
+
+  });
+}
+delete(file){
+  this.formService.delete(file).subscribe(res=>{
+    this.getAllFiles()
+
+  },
+  error => {
+    console.log(error)
+  })
 }
  
 

@@ -13,7 +13,7 @@
       <ion-label>Documentos</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="documentgenerator">
+    <ion-tab-button *appHasRole="adminroles" tab="documentgenerator">
       <ion-icon name="add-circle"></ion-icon>
       <ion-label>Generador de formularios</ion-label>
     </ion-tab-button>

@@ -8,8 +8,6 @@ export class UserDataResolver {
   constructor(private authService: AuthService) {}
 
   resolve() {
-    console.log('Hello');
-    // return this.authService.getUserData();
     return this.authService.refreshUserData();
   }
 }

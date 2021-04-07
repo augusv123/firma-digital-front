@@ -35,7 +35,7 @@
         <h3>{{user.userName}}</h3>
         <!-- <p>Listen, I've had a pretty messed up day...</p> -->
       </ion-label>
-      <ion-button slot="end" (click)="getAllSignedFiles(user)">
+      <ion-button slot="end" (click)="getAllDirectories(user)">
         <ion-icon name="search"></ion-icon>
       </ion-button>
     </ion-item>
@@ -58,7 +58,7 @@
           <h2>{{file| filepipe}}</h2>
           <!-- <p>Listen, I've had a pretty messed up day...</p> -->
         </ion-label>
-        <ion-button [routerLink]="['signed-files', file]" >
+        <ion-button [routerLink]="['signed-files', file,userSelected.id]" >
         <ion-icon name="arrow-forward"></ion-icon>
 
         </ion-button>

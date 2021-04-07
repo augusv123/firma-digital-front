@@ -14,8 +14,7 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
     this.authService.getUserSubject().subscribe(
       res => {
-        this.user = JSON.parse(res)
-        console.log(this.user)
+        this.user = res
         
       },
       error => {
