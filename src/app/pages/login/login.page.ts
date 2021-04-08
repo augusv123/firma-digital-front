@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
                 }
               });
           } else {
-            this.toastService.presentToast('Incorrect email and password.');
+            this.toastService.presentToast('usuario o contraseña incorrecta.');
           }
         },
         (error: any) => {

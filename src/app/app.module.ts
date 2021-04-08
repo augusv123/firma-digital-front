@@ -15,6 +15,7 @@ import { OptionsPagePageModule } from './options-page/options-page.module';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { PDFViewPageModule } from './pdfview/pdfview.module';
+import { LoadingScreenInterceptor } from './interceptor/loading.interceptor';
 @NgModule({
   declarations: [AppComponent, ],
   entryComponents: [],
@@ -37,6 +38,10 @@ import { PDFViewPageModule } from './pdfview/pdfview.module';
    }, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
+    multi: true
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingScreenInterceptor,
     multi: true
   },
   {provide : LocationStrategy ,
