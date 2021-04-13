@@ -25,7 +25,8 @@ export class SignedFilesPage implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const nombre = this.route.snapshot.paramMap.get('nombre');
     const carpeta = this.route.snapshot.paramMap.get('carpeta');
-    var path = "public/signedForms/"+id+"/"+carpeta+"/"+nombre
+    var path = "public/signedForms/"+id+"/"+carpeta+"/"+nombre+".pdf"
+    console.log(path)
     if(id && nombre && carpeta){
       this.getSignedForm(path)
     const value = path.split("/");
@@ -61,6 +62,7 @@ export class SignedFilesPage implements OnInit {
       })
     }
     getSignedForm(filename){
+      console.log("working")
       console.log(filename)
 
       this.documentsService.getSignedForm(filename).subscribe(
