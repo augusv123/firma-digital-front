@@ -97,7 +97,8 @@ export class MessagesPage implements OnInit {
           this.blob = new Blob([res], { type: "application/pdf"});
           this.fileurl = URL.createObjectURL(this.blob);
       this.blob = this.getSafeUrl( this.fileurl)
-          this.viewPDF(this.blob)
+      console.log(filename)
+          this.viewPDF(this.blob,filename)
           this.fetched = true
           console.log(res)
         },
@@ -117,7 +118,7 @@ export class MessagesPage implements OnInit {
         this.blob = new Blob([res], { type: "application/pdf"});
         this.fileurl = URL.createObjectURL(this.blob);
     this.blob = this.getSafeUrl( this.fileurl)
-        this.viewPDF(this.blob)
+        // this.viewPDF(this.blob,)
 
       },
       error => {
@@ -164,12 +165,13 @@ export class MessagesPage implements OnInit {
     this.selectedFile = null
     this.fetched = false
   }
-  async viewPDF(blob) {
+  async viewPDF(blob,filename) {
     const modal = await this.modalController.create({
       component: PDFViewPage,
       cssClass: 'my-custom-modal-css',
       componentProps: {
         'blob': blob,
+        'filename': filename,
         
       }
     });

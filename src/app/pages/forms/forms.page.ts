@@ -56,12 +56,35 @@ export class FormsPage implements OnInit {
     this.categorias = []
   }
 
-  getForm(filename){
-    this.selectedFile = filename
+  // getForm(filename){
+  //   this.selectedFile = filename
+  //   this.clearControls()
+  //   this.formService.getForm(filename).subscribe( 
+  //     res => {
+  //       let obj = JSON.parse(res.toString());
+  //       this.simpleForm = obj
+  //       // console.log(obj)
+
+  //       // this.transformText(this.simpleForm.inputs)
+  //       this.createControls(obj.inputs)
+     
+  //       obj.inputs.forEach(input => {
+  //         this.categorias.push(input.positionKey)
+  //       });
+  //       this.categorias = this.categorias.filter(function(elem, index, self) {
+  //         return index === self.indexOf(elem);
+  //       })
+  //       this.loaded = true
+  //     },
+  //     error => {
+  //       console.log(error)
+  //     }
+  //   )
+  // }
+  getForm(file){
+    this.selectedFile = file
     this.clearControls()
-    this.formService.getForm(filename).subscribe( 
-      res => {
-        let obj = JSON.parse(res.toString());
+        let obj = JSON.parse(file.valor);
         this.simpleForm = obj
         // console.log(obj)
 
@@ -75,11 +98,7 @@ export class FormsPage implements OnInit {
           return index === self.indexOf(elem);
         })
         this.loaded = true
-      },
-      error => {
-        console.log(error)
-      }
-    )
+   
   }
   createControls(controls: any){
 
@@ -149,6 +168,7 @@ export class FormsPage implements OnInit {
   getAllFiles(){
     this.formService.getAllFiles().subscribe( 
       res => {
+        console.log(res)
         this.files = res
         this.filteredForms = res
 

@@ -69,7 +69,7 @@ export class SignedFilesPage implements OnInit {
           this.blob = new Blob([res], { type: "application/pdf"});
           this.fileurl = URL.createObjectURL(this.blob);
       this.blob = this.getSafeUrl( this.fileurl)
-          this.viewPDF(this.blob)
+          this.viewPDF(this.blob,filename)
           console.log(res)
         },
         error => {
@@ -81,12 +81,13 @@ export class SignedFilesPage implements OnInit {
     getSafeUrl(fileName) {    
       return this.sanitizer.bypassSecurityTrustResourceUrl(fileName);
     }
-    async viewPDF(blob) {
+    async viewPDF(blob,filename) {
       const modal = await this.modalController.create({
         component: PDFViewPage,
         cssClass: 'my-custom-modal-css',
         componentProps: {
           'blob': blob,
+          'filename': filename,
           
         }
       });

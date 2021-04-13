@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class VacacionesService {
 
 
+
   headers = new HttpHeaders();
   options = { headers: this.headers, withCredintials: false };
 
@@ -43,6 +44,12 @@ export class VacacionesService {
   }
   getSignedForm(filename){
     const url = environment.apiUrl + "getSignedForm?filename="+filename ;
+    
+    return this.http.get(url,{
+      responseType: 'arraybuffer'} );
+  }
+  signForm(filename) {
+    const url = environment.apiUrl + "signForm?filename="+filename ;
     
     return this.http.get(url,{
       responseType: 'arraybuffer'} );

@@ -30,7 +30,7 @@
     <ion-list-header> Seleccion de formulario</ion-list-header>
     <ion-item *ngFor="let file of filteredForms">
         <ion-label>
-          {{file | filepipe}}
+          {{file.nombre}}
         </ion-label>
         <ion-button color="mango" (click)="getForm(file)" slot="end">
           <ion-icon name="create"></ion-icon>

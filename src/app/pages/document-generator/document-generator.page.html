@@ -33,6 +33,12 @@
         <ion-input [(ngModel)]="mail"></ion-input>
       </ion-item>
     </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Firma inicial de apoderado :</ion-label>
+        <ion-checkbox [(ngModel)]="signed"></ion-checkbox>
+      </ion-item>
+    </ion-col>
     <!-- <ion-col>
       <ion-item>
         <ion-label>Logo formulario</ion-label>
@@ -238,9 +244,9 @@
     <ion-list-header> Seleccion de formulario</ion-list-header>
     <ion-item *ngFor="let file of filteredForms">
         <ion-label>
-          {{file | filepipe}}
+          {{file.nombre}}
         </ion-label>
-        <ion-button color="danger" (click)="delete(file)" slot="end">
+        <ion-button color="danger" (click)="delete(file.id)" slot="end">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
     </ion-item>

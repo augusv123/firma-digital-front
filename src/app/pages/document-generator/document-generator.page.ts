@@ -56,13 +56,15 @@ export class CompleteDynamicForm {
   categoriesColor 
   title
   mail
-  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com"){
+  signed
+  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com",signed = false){
    
     this.inputs = dynamicform
     this.formText = formtext
     this.categoriesColor = categoriesColor
     this.title = title
     this.mail = mail
+    this.signed = signed
   }
 }
 export class Subtitle{
@@ -100,6 +102,7 @@ export class DocumentGeneratorPage implements OnInit {
   mail
   avatarUrl
   files
+  signed =false
   mode = "create"
   subtitulosInputs : Subtitle[] = []
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,private route:ActivatedRoute) {
@@ -208,7 +211,7 @@ export class DocumentGeneratorPage implements OnInit {
     }
   }
   saveForm(){
-    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail)
+    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail,this.signed)
     
     this.formService.requestVacations(completedynamicForm).subscribe(
       res => {
@@ -355,8 +358,8 @@ searchAndFilterItems() {
 
   });
 }
-delete(file){
-  this.formService.delete(file).subscribe(res=>{
+delete(id){
+  this.formService.delete(id).subscribe(res=>{
     this.getAllFiles()
 
   },
