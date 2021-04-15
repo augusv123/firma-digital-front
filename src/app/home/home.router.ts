@@ -22,7 +22,13 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../pages/forms/forms.module').then(m => m.FormsPageModule)
-          }
+          } , {
+            path: 'form-completion/:file',
+            loadChildren: () =>
+            import('../pages/form-completion/form-completion.module').then(
+                m => m.FormCompletionPageModule
+              )
+          },
         ]
       },
       {

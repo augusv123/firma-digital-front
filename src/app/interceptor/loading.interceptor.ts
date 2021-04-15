@@ -32,7 +32,9 @@ export class LoadingScreenInterceptor implements HttpInterceptor {
 
     if (displayLoadingScreen) {
       if (this.activeRequests === 0) {
-        this.loadingScreenService.startLoading();
+         this.loadingScreenService.startLoading();
+         displayLoadingScreen = true;
+
       }
       this.activeRequests++;
 
@@ -40,7 +42,10 @@ export class LoadingScreenInterceptor implements HttpInterceptor {
         finalize(() => {
           this.activeRequests--;
           if (this.activeRequests === 0) {
-            this.loadingScreenService.stopLoading();
+            if(displayLoadingScreen == true){
+
+              this.loadingScreenService.stopLoading();
+            }
           }
         })
       )

@@ -46,6 +46,44 @@
         </ion-card>
       </ion-col>
     </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+
+        <ion-list *ngIf="isAdmin()">
+    <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
+  
+          <ion-list-header style="font-size: 20px;
+          font-weight: 600;">
+            Listado de usuarios
+          </ion-list-header>
+      
+          <ion-item *ngFor="let user of filteredUsers">
+            <ion-avatar slot="start" >
+              <img  [src]="user.profile_photo_url" >
+            </ion-avatar>
+            <ion-label>
+              <h2>{{user.name}}</h2>
+              <h3>{{user.userName}}</h3>
+              <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+            </ion-label>
+            <!-- <ion-label >
+                <h2 *ngFor="let userRole of user.roles"> {{userRole.description}}
+                  <ion-button color="danger" fill="outline" (click)="delete(userRole)">
+                    <ion-icon name="close"></ion-icon>
+                  </ion-button>
+
+                </h2>
+           
+            </ion-label> -->
+            <ion-select required="true" [(ngModel)]="user.roles"     name=role  placeholder="seleccione un rol">
+              <ion-select-option value="role" *ngFor="let role of roles" >{{role.description}}</ion-select-option>
+
+            </ion-select>
+          
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
   

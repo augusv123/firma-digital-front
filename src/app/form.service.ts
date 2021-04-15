@@ -40,5 +40,10 @@ export class FormService {
     
     return this.http.post(url,{filename} );
   }
+  toggleFormVisibility(id){
+    const url = environment.apiUrl + "toggleFormVisibility" ;
+    
+    return this.http.post(url,{id} );
+  }
 
 }

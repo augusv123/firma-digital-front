@@ -6,6 +6,7 @@ import AdvancedJSon from '../../../assets/advancedJson.json';
 import { FormService } from 'src/app/form.service';
 import { OptionsPagePage } from 'src/app/options-page/options-page.page';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 
 export class Options {
@@ -56,15 +57,17 @@ export class CompleteDynamicForm {
   categoriesColor 
   title
   mail
-  signed
-  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com",signed = false){
+  firmaApoderado
+  due_date = null
+  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com",signed = false,due_date = null){
    
     this.inputs = dynamicform
     this.formText = formtext
     this.categoriesColor = categoriesColor
     this.title = title
     this.mail = mail
-    this.signed = signed
+    this.firmaApoderado = signed
+    this.due_date = due_date
   }
 }
 export class Subtitle{
@@ -101,6 +104,7 @@ export class DocumentGeneratorPage implements OnInit {
   item={isValid:true}
   mail
   avatarUrl
+  due_date
   files
   signed =false
   mode = "create"
@@ -211,7 +215,9 @@ export class DocumentGeneratorPage implements OnInit {
     }
   }
   saveForm(){
-    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail,this.signed)
+    this.due_date = new DatePipe('en-US').transform(this.due_date, 'yyyy-MM-dd');
+    console.log(this.due_date)
+    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail,this.signed ,this.due_date)
     
     this.formService.requestVacations(completedynamicForm).subscribe(
       res => {
@@ -269,6 +275,17 @@ export class DocumentGeneratorPage implements OnInit {
       console.log(position)
     }
 }
+toggleFormVisibility(id){
+  this.formService.toggleFormVisibility(id).subscribe(
+    res => {
+      console.log(res)
+      this.getAllFiles()
+    },
+    error => {
+      console.log(error)
+    }
+  )
+}
   tooglePressed(key){
     this.lastclicked = key
     // this.btnpressed = !this.btnpressed
@@ -301,6 +318,8 @@ colorPickerClosed(event){
 
 }
 colorChanged(event){
+  console.log(this.due_date)
+
   this.categoriesColor = event.color
 }
 

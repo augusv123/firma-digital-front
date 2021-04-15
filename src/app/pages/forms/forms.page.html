@@ -28,69 +28,25 @@
   <ion-list>
     <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
     <ion-list-header> Seleccion de formulario</ion-list-header>
-    <ion-item *ngFor="let file of filteredForms">
-        <ion-label>
-          {{file.nombre}}
-        </ion-label>
-        <ion-button color="mango" (click)="getForm(file)" slot="end">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-    </ion-item>
-  </ion-list>
+    <ng-container *ngFor="let file of filteredForms">
 
-  <ng-container *ngIf="loaded" style="margin-top: 20px;">
-
-    <div class="center">
-      <h1>{{simpleForm?.title}}</h1>
-    </div>
-    <ion-item > 
-      <ion-input [(ngModel)]="formText" readonly value="dog">
-        {{simpleForm?.formText | formText : simpleForm?.inputs : myForm }}
-      </ion-input>
-    </ion-item>
-  </ng-container>
-    
-<form [formGroup]="myForm" (ngSubmit)="signAndSend()" *ngIf="loaded   "  padding='true'>
- 
-  <ion-list >
-    <ng-container *ngFor="let categoria of categorias">
-
-      <ion-list-header class="tituloseccion" [style.background-color]="simpleForm?.categoriesColor" *ngIf="categoria != 'default'">
-        <ion-label>{{categoria}}</ion-label>
+      <ion-item *ngIf="vencido(file.fecha_finalizacion)  &&  (file.visible == 1)" >
+          <ion-label >
+            {{file.nombre}}
+           ( {{file.fecha_creacion | date: 'dd/MM/yyyy'}} ) 
   
-      </ion-list-header>
-      <ng-container *ngFor="let c of simpleForm?.inputs;let i = index">
-
-        <ion-item *ngIf="c.positionKey == categoria" [ngSwitch]="c.type">
-          
-          <ion-label position="stacked">{{c.label}}</ion-label>
-            <ion-toggle  *ngSwitchCase="'boolean'" [required]="c.options?.required"  [formControlName]="c.key" ></ion-toggle>
-            <ion-datetime  [pickerOptions]="customPickerOptions" [required]="c.options?.required"  displayFormat="DD/MM/YY"  placeholder="Custom Options" *ngSwitchCase="'date'" [formControlName]="c.key" ></ion-datetime>
-            <ion-textarea  *ngSwitchCase="'textarea'"  rows="3" [required]="c.options?.required"  [formControlName]="c.key" ></ion-textarea>
-            <ion-input  *ngSwitchCase="'text'" [required]="c.options?.required" [type]="c.options?.type ?  c.options.type :  'text' " [formControlName]="c.key" ></ion-input>
-            <ion-input  *ngSwitchCase="'number'"  [required]="c.options?.required" [type]="c.options?.type ?  c.options.type :  'number' " [formControlName]="c.key" ></ion-input>
-            <ion-select *ngSwitchCase="'select'" [required]="c.options?.required"  value="none" [formControlName]="c.key">
-              <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
-            </ion-select>
-        </ion-item>
-      </ng-container>
+          </ion-label>
+          <ion-button color="mango" (click)="selectFile(file)" slot="end">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+      </ion-item>
     </ng-container>
-  
-    <!-- <ion-item>
-      <div>
-
-        <ion-label>input de prueba</ion-label>
-        <ion-input></ion-input>
-      </div>
-    </ion-item> -->
   </ion-list>
-  <ion-button expand="block" share="round" color="success" type="submit" expand="block" [disabled]="!myForm.valid">Firmar y enviar solicitud
 
-    <ion-icon name="send"></ion-icon>
-  </ion-button>
- 
+  <app-form-completion *ngIf="selectedFile" [file]="selectedFile"></app-form-completion>
 
-  </form>
+
+  
 
   <app-vacaciones *ngIf="selectedForm == 'vacaciones'"></app-vacaciones>
   <app-performance *ngIf="selectedForm == 'performance'"></app-performance>

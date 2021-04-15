@@ -1,27 +1,18 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { FormTextPipe } from 'src/app/form-text.pipe';
 import { FormService } from 'src/app/form.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { VacacionesService } from 'src/app/services/vacaciones.service';
-import { DynamicFormControl } from '../document-generator/document-generator.page';
 
-export class FinalForm{
-  inputs
-  formText
-  title
-}
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.page.html',
-  styleUrls: ['./forms.page.scss'],
+  selector: 'app-form-completion',
+  templateUrl: './form-completion.page.html',
+  styleUrls: ['./form-completion.page.scss'],
 })
-
-
-
-export class FormsPage implements OnInit {
+export class FormCompletionPage implements OnInit {
   myForm : FormGroup;
   
   newForm : FormGroup;
@@ -39,6 +30,7 @@ export class FormsPage implements OnInit {
   avatarUrl  : string =""
   filteredForms
   filter
+  @Input() file: any; 
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
      private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe,public datepipe: DatePipe) {
     this.myForm = this.fb.group({})
@@ -46,18 +38,19 @@ export class FormsPage implements OnInit {
     this.myForm.addControl("texto",newFormControl)
     this.avatarUrl = localStorage.getItem('avatarUrl')
 
+    
    }
 
   ngOnInit() {
-    this.getAllFiles()
+
+    if(this.file){
+      this.getForm(this.file)
+    }
   }
   clearControls(){
     this.myForm = this.fb.group({})
     this.simpleForm = null
     this.categorias = []
-  }
-  selectFile(file){
-    this.selectedFile = file
   }
 
   // getForm(filename){

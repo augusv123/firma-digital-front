@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import localeEsAr from '@angular/common/locales/es-AR';
 
 import { DocumentGeneratorPage } from './document-generator.page';
 import { FormTextPipe } from 'src/app/form-text.pipe';
@@ -30,6 +31,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicColorPickerModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    {
+      provide: localeEsAr, useValue: 'es-AR'
+   },
   ],
   declarations: [DocumentGeneratorPage]
 })

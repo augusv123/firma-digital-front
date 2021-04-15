@@ -24,15 +24,15 @@ export class VacacionesPage implements OnInit {
   }
   signAndSend(){
     
-    this.vacacionesService.requestVacations(this.postData).subscribe(
-      (res: any) => { 
-        this.downLoadFile(res, "application/pdf","pdf")
+    // this.vacacionesService.requestVacations(this.postData).subscribe(
+    //   (res: any) => { 
+    //     this.downLoadFile(res, "application/pdf","pdf")
      
-      },
-      (error: any) => {
-        this.toastService.presentToast('Network Issue.');
-      }
-    );
+    //   },
+    //   (error: any) => {
+    //     this.toastService.presentToast('Network Issue.');
+    //   }
+    // );
   }
    formatDate(dateTime) {
     var date: Date = new Date(dateTime);

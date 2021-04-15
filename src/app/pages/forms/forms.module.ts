@@ -12,6 +12,7 @@ import { PerformancePage } from '../performance/performance.page';
 import { SituationUpdatePage } from '../situation-update/situation-update.page';
 import { FilepipePipe } from 'src/app/filepipe.pipe';
 import { SharedModuleModule } from 'src/app/shared/shared-module/shared-module.module';
+import { FormCompletionPage } from '../form-completion/form-completion.page';
 
 const routes: Routes = [
   {
@@ -27,9 +28,11 @@ const routes: Routes = [
     IonicModule,
     SharedModuleModule,
     ReactiveFormsModule,
+    
     RouterModule.forChild(routes)
   ],
-  declarations: [FormsPage,FormTextPipe,VacacionesPage,PerformancePage,SituationUpdatePage ],
-  providers:    [ FormTextPipe ]
+  declarations: [FormsPage,FormTextPipe,VacacionesPage,PerformancePage,SituationUpdatePage,FormCompletionPage ],
+  providers:    [ FormTextPipe ],
+  
 })
 export class FormsPageModule {}

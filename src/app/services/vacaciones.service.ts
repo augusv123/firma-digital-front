@@ -16,9 +16,9 @@ export class VacacionesService {
 
 
   
-  requestVacations(form) {
+  requestVacations(form,signed) {
     const url = environment.apiUrl + "createSignedPDF" ;
-    return this.http.post(url,{form },{
+    return this.http.post(url,{form,signed },{
       responseType: 'arraybuffer'} );
   }
   getPDF(){

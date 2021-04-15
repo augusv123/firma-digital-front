@@ -13,7 +13,7 @@ import { FormsPageModule } from './pages/forms/forms.module';
 import { DocumentGeneratorPageModule } from './pages/document-generator/document-generator.module';
 import { OptionsPagePageModule } from './options-page/options-page.module';
 import { TokenInterceptor } from './interceptor/token.interceptor';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { PDFViewPageModule } from './pdfview/pdfview.module';
 import { LoadingScreenInterceptor } from './interceptor/loading.interceptor';
 @NgModule({
@@ -44,6 +44,8 @@ import { LoadingScreenInterceptor } from './interceptor/loading.interceptor';
     useClass: LoadingScreenInterceptor,
     multi: true
   },
+  DatePipe,
+  
   {provide : LocationStrategy ,
     useClass: HashLocationStrategy
    },

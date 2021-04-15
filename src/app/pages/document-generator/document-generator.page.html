@@ -33,19 +33,28 @@
         <ion-input [(ngModel)]="mail"></ion-input>
       </ion-item>
     </ion-col>
-    <ion-col>
-      <ion-item>
-        <ion-label>Firma inicial de apoderado :</ion-label>
-        <ion-checkbox [(ngModel)]="signed"></ion-checkbox>
-      </ion-item>
-    </ion-col>
+  </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Firma inicial de apoderado :</ion-label>
+          <ion-checkbox [(ngModel)]="signed"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Fecha de finalizacion :</ion-label>
+      <ion-datetime [pickerOptions]="customPickerOptions" name="email" placeholder="Custom Options" [(ngModel)]="due_date" displayFormat="DD/MM/YY" min="2021" max="2050"></ion-datetime>
+
+        </ion-item>
+      </ion-col>
+    </ion-row>
     <!-- <ion-col>
       <ion-item>
         <ion-label>Logo formulario</ion-label>
         <ion-input type="file"> </ion-input>
       </ion-item>
     </ion-col> -->
-  </ion-row>
   <ion-row>
     <ion-col size="12">
       
@@ -245,7 +254,12 @@
     <ion-item *ngFor="let file of filteredForms">
         <ion-label>
           {{file.nombre}}
+          
+
         </ion-label>
+        <ion-button color="mango" (click)="toggleFormVisibility(file.id)" slot="end">
+          <ion-icon [name]="file.visible == 1 ? 'eye' : 'eye-off'"></ion-icon>
+        </ion-button>
         <ion-button color="danger" (click)="delete(file.id)" slot="end">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
