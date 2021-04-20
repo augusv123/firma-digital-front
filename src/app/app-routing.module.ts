@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'options-page', loadChildren: './options-page/options-page.module#OptionsPagePageModule' },
   { path: 'pdfview', loadChildren: './pdfview/pdfview.module#PDFViewPageModule' },
 
-  { path: 'signed-files', loadChildren: './pages/signed-files/signed-files.module#SignedFilesPageModule' },  { path: 'form-completion', loadChildren: './pages/form-completion/form-completion.module#FormCompletionPageModule' }
+  { path: 'signed-files', loadChildren: './pages/signed-files/signed-files.module#SignedFilesPageModule' },
+  { path: 'form-completion', loadChildren: './pages/form-completion/form-completion.module#FormCompletionPageModule' }
 
 
 

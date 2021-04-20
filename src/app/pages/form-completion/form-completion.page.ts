@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { FormTextPipe } from 'src/app/form-text.pipe';
 import { FormService } from 'src/app/form.service';
@@ -30,13 +31,14 @@ export class FormCompletionPage implements OnInit {
   avatarUrl  : string =""
   filteredForms
   filter
-  @Input() file: any; 
+  file
   constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
-     private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe,public datepipe: DatePipe) {
+     private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe,public datepipe: DatePipe, public route : ActivatedRoute) {
     this.myForm = this.fb.group({})
     const newFormControl = new FormControl()
     this.myForm.addControl("texto",newFormControl)
     this.avatarUrl = localStorage.getItem('avatarUrl')
+     this.file = this.route.snapshot.paramMap.get('file');
 
     
    }
@@ -78,23 +80,31 @@ export class FormCompletionPage implements OnInit {
   //     }
   //   )
   // }
-  getForm(file){
-    this.selectedFile = file
-    this.clearControls()
-        let obj = JSON.parse(file.valor);
-        this.simpleForm = obj
-        // console.log(obj)
-
-        // this.transformText(this.simpleForm.inputs)
-        this.createControls(obj.inputs)
-     
-        obj.inputs.forEach(input => {
-          this.categorias.push(input.positionKey)
-        });
-        this.categorias = this.categorias.filter(function(elem, index, self) {
-          return index === self.indexOf(elem);
-        })
-        this.loaded = true
+  getForm(fileID){
+    this.formService.getCompletionForm(fileID).subscribe(
+      res => {
+        this.selectedFile = res
+        this.clearControls()
+            let obj = JSON.parse(this.selectedFile.valor);
+            this.simpleForm = obj
+            // console.log(obj)
+    
+            // this.transformText(this.simpleForm.inputs)
+            this.createControls(obj.inputs)
+         
+            obj.inputs.forEach(input => {
+              this.categorias.push(input.positionKey)
+            });
+            this.categorias = this.categorias.filter(function(elem, index, self) {
+              return index === self.indexOf(elem);
+            })
+            this.loaded = true
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  
    
   }
   createControls(controls: any){

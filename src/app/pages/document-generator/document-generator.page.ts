@@ -5,8 +5,9 @@ import FormJSon from '../../../assets/test.json';
 import AdvancedJSon from '../../../assets/advancedJson.json';
 import { FormService } from 'src/app/form.service';
 import { OptionsPagePage } from 'src/app/options-page/options-page.page';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { RoleService } from 'src/app/services/role.service';
 
 
 export class Options {
@@ -59,7 +60,8 @@ export class CompleteDynamicForm {
   mail
   firmaApoderado
   due_date = null
-  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com",signed = false,due_date = null){
+  selectedRoles
+  constructor(dynamicform,formtext, categoriesColor = '#808080',title = "Formulario sin titulo",mail ="avidal@grupopiero.com",signed = false,due_date = null,selectedRoles = null){
    
     this.inputs = dynamicform
     this.formText = formtext
@@ -68,6 +70,7 @@ export class CompleteDynamicForm {
     this.mail = mail
     this.firmaApoderado = signed
     this.due_date = due_date
+    this.selectedRoles = selectedRoles
   }
 }
 export class Subtitle{
@@ -108,18 +111,23 @@ export class DocumentGeneratorPage implements OnInit {
   files
   signed =false
   mode = "create"
+  roles
+  selectedRoles
   subtitulosInputs : Subtitle[] = []
-  constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,private route:ActivatedRoute) {
+  constructor(  private router: Router, private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,
+    private route:ActivatedRoute, private roleService : RoleService) {
     this.newForm = this.fb.group({})
     // this.createAdvancedControls(this.advancedForm)
     console.log(this.myForm)
     this.dynamicform = []
 
     this.addInput()
+    
    }
 
   ngOnInit() {
     this.getAllFiles()
+    this.getRoles()
 
     console.log(this.route.snapshot.paramMap.get('documentId'));
     this.avatarUrl = localStorage.getItem('avatarUrl')
@@ -217,12 +225,14 @@ export class DocumentGeneratorPage implements OnInit {
   saveForm(){
     this.due_date = new DatePipe('en-US').transform(this.due_date, 'yyyy-MM-dd');
     console.log(this.due_date)
-    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail,this.signed ,this.due_date)
+    const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail,this.signed ,this.due_date,this.selectedRoles)
     
     this.formService.requestVacations(completedynamicForm).subscribe(
       res => {
         console.log(res)
         this.presentToast("Se genero con exito el nuevo formulario: " +this.title)
+        this.router.navigate(['/home']);
+
       },
       error =>  {
         this.presentToast("Oops, hubo un error :   " + error.error)
@@ -385,6 +395,18 @@ delete(id){
   error => {
     console.log(error)
   })
+}
+getRoles() {
+  this.roleService.getRoles().subscribe(
+    res => {
+      this.roles = res
+    },
+    error => {
+    console.log(error)}
+  )
+}
+logg(){
+  console.log(this.selectedRoles)
 }
  
 

@@ -32,18 +32,25 @@
 
       <ion-item *ngIf="vencido(file.fecha_finalizacion)  &&  (file.visible == 1)" >
           <ion-label >
-            {{file.nombre}}
-           ( {{file.fecha_creacion | date: 'dd/MM/yyyy'}} ) 
+            <h2 style="font-weight: 600;">
+
+              {{file.nombre}}
+            </h2>
+            <h3 style="color: grey;">
+              Fecha de creacion : {{  file.fecha_creacion | date: 'dd/MM/yyyy'}} 
+
+            </h3>
   
           </ion-label>
-          <ion-button color="mango" (click)="selectFile(file)" slot="end">
+          <ion-button color="mango" [routerLink]="['form-completion', file.id]" slot="end">
             <ion-icon name="create"></ion-icon>
           </ion-button>
+     
+
       </ion-item>
     </ng-container>
   </ion-list>
 
-  <app-form-completion *ngIf="selectedFile" [file]="selectedFile"></app-form-completion>
 
 
   

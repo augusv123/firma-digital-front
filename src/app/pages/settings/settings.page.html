@@ -46,40 +46,82 @@
         </ion-card>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-justify-content-center">
+    <ion-row *ngIf="isAdmin()" class="ion-justify-content-center">
+      <!-- *ngIf="isAdmin()" -->
       <ion-col>
+          <ion-row *ngFor="let user of filteredUsers"> 
+              <ion-col>
+                  <ion-label>
 
-        <ion-list *ngIf="isAdmin()">
-    <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
-  
-          <ion-list-header style="font-size: 20px;
-          font-weight: 600;">
-            Listado de usuarios
-          </ion-list-header>
+                    <h2>{{user.name}}</h2>
+
+                  </ion-label>
+              </ion-col>
+              <ion-col>
+                  <ion-label>
+                    <h3>{{user.userName}}</h3>
+                    <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+                  </ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label >
+                      <h2 *ngFor="let userRole of user.roles"> {{userRole.description}}
+                        <ion-button color="danger" fill="clear" (click)="dettach(userRole,user)">
+                          <ion-icon name="close"></ion-icon>
+                        </ion-button>
+                      </h2>
+                </ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-select required="true" [(ngModel)]="user.selectedRole"  (ionChange)="assignRole(user)"    placeholder="seleccione un rol">
+                    <ion-select-option [value]="role.name" *ngFor="let role of roles" >{{role.description}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+      </ion-col>
+
+        
+    </ion-row>
+    <ion-row padding="true">
+      <ion-col>
+        <ion-item>
+          <ion-label>Nombre</ion-label>
+          <ion-input [(ngModel)]="newName"></ion-input>
       
-          <ion-item *ngFor="let user of filteredUsers">
-            <ion-avatar slot="start" >
-              <img  [src]="user.profile_photo_url" >
-            </ion-avatar>
+          <ion-label>Descripcion</ion-label>
+
+          <ion-input [(ngModel)]="newDescription"></ion-input>
+          <ion-button (click)="addRole()" slot="end" color="mango">
+            <ion-icon name="add"></ion-icon>
+    
+          </ion-button>
+        </ion-item>
+   
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+        
+          <ion-list-header>
             <ion-label>
-              <h2>{{user.name}}</h2>
-              <h3>{{user.userName}}</h3>
-              <!-- <p>Listen, I've had a pretty messed up day...</p> -->
+
+              Roles
             </ion-label>
-            <!-- <ion-label >
-                <h2 *ngFor="let userRole of user.roles"> {{userRole.description}}
-                  <ion-button color="danger" fill="outline" (click)="delete(userRole)">
-                    <ion-icon name="close"></ion-icon>
-                  </ion-button>
-
-                </h2>
-           
-            </ion-label> -->
-            <ion-select required="true" [(ngModel)]="user.roles"     name=role  placeholder="seleccione un rol">
-              <ion-select-option value="role" *ngFor="let role of roles" >{{role.description}}</ion-select-option>
-
-            </ion-select>
-          
+              
+          </ion-list-header>
+          <ion-item *ngFor="let role of roles">
+              <ion-label>
+                <h2>{{role.name}}</h2>
+                <h3>{{role.description}}</h3>
+              </ion-label>
+              <ion-button (click)="deleteRole(role.id)" slot="end" color="danger">
+                <ion-icon name="trash"></ion-icon>
+        
+              </ion-button>
           </ion-item>
         </ion-list>
       </ion-col>

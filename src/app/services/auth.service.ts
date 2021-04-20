@@ -88,7 +88,6 @@ export class AuthService {
   }
   
   refreshUserData() {
-    console.log("se llama al refre")
     var user = JSON.parse(localStorage.getItem('user'))
     this.currentUser.next(user);
     // this.storageService.get(AuthConstants.USER).then(res => {

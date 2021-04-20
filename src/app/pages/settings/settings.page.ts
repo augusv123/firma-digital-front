@@ -15,7 +15,9 @@ export class SettingsPage implements OnInit {
   hasAdminRole 
   filteredUsers
   filter
-  
+  newName
+  newDescription
+  selectedRole
   constructor(private authService: AuthService, private roleService  :RoleService) {}
 
   ngOnInit() {
@@ -42,7 +44,6 @@ export class SettingsPage implements OnInit {
     this.roleService.getRoles().subscribe(
       res => {
         this.roles = res
-        console.log(res)
       },
       error => {
       console.log(error)}
@@ -54,7 +55,6 @@ export class SettingsPage implements OnInit {
         this.users  = res
         this.filteredUsers = res
         
-        console.log(res)
       },
       error => {
       console.log(error)}
@@ -76,4 +76,42 @@ export class SettingsPage implements OnInit {
   isAdmin(){
     return this.hasAdminRole
   }
+  deleteRole(id){
+    this.roleService.deleteRole(id).subscribe(
+      res => {
+      this.getRoles()
+      this.getUsersWithRoles()
+
+      },
+      error=> console.log(error)
+    )
+  }
+
+addRole(){
+  this.roleService.addRole(this.newName,this.newDescription).subscribe(
+    res => {
+      this.getRoles()
+    },
+    error=> console.log(error)
+  )
 }
+assignRole(user){
+  this.roleService.assignRole(user.id,user.selectedRole).subscribe(
+    res => {
+      console.log(res)
+      this.getUsersWithRoles()
+    },
+    error=> console.log(error)
+  )
+}
+dettach(userRole,user){
+  this.roleService.dettachRole(userRole.name,user.id).subscribe(
+    res => {
+      console.log(res)
+      this.getUsersWithRoles()
+    },
+    error=> console.log(error)
+  )
+}
+}
+

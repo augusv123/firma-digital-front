@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { FormCompletionPage } from './form-completion.page';
+import { Share } from '@capacitor/core';
+import { SharedModuleModule } from 'src/app/shared/shared-module/shared-module.module';
+import { FormTextPipe } from 'src/app/form-text.pipe';
 
 const routes: Routes = [
   {
@@ -17,10 +20,16 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedModuleModule,
     FormsModule,
+    SharedModuleModule,
     IonicModule,
+    ReactiveFormsModule,
+
     RouterModule.forChild(routes)
+  
   ],
-  declarations: [FormCompletionPage]
+  declarations: [FormCompletionPage],
+
 })
 export class FormCompletionPageModule {}

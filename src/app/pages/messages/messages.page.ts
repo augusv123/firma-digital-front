@@ -44,7 +44,7 @@ export class MessagesPage implements OnInit {
         this.authService.getUserSubject().subscribe(res => {
          
           // this.getAllSignedFiles(user)
-          this.getAllDirectories(JSON.parse(res))
+          this.getAllDirectories(res)
           
         },
         error => console.log(error))

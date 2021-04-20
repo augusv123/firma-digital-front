@@ -10,10 +10,8 @@ export class LoggedGuard implements CanActivate, CanLoad {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log("activated")
 
     if (!this.authService.isLoggedIn()) {
-      console.log("it is not logged in")
       let url: string = state.url;
       this.authService.redirectUrl = url;
       this.router.navigate(['/login']);

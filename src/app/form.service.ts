@@ -6,8 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class FormService {
-
-
+ 
   headers = new HttpHeaders();
   options = { headers: this.headers, withCredintials: false };
 
@@ -45,5 +44,11 @@ export class FormService {
     
     return this.http.post(url,{id} );
   }
+  getCompletionForm(id){
+    const url = environment.apiUrl + "getCompletionForm?fileId="+id ;
+    
+    return this.http.get(url );
+  }
+  
 
 }

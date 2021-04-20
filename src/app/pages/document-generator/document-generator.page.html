@@ -13,7 +13,7 @@
       <ion-label>Crear</ion-label>
     </ion-segment-button>
     <ion-segment-button value="delete">
-      <ion-label>Eliminar</ion-label>
+      <ion-label>Editar</ion-label>
     </ion-segment-button>
   </ion-segment>
   <div [ngSwitch]="mode">
@@ -47,6 +47,13 @@
       <ion-datetime [pickerOptions]="customPickerOptions" name="email" placeholder="Custom Options" [(ngModel)]="due_date" displayFormat="DD/MM/YY" min="2021" max="2050"></ion-datetime>
 
         </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+        <ion-select required="true" [(ngModel)]="selectedRoles" multiple  (ionChange)="logg()"    placeholder="seleccione un rol">
+          <ion-select-option [value]="role.name" *ngFor="let role of roles" >{{role.description}}</ion-select-option>
+        </ion-select>
+      </ion-item>
       </ion-col>
     </ion-row>
     <!-- <ion-col>

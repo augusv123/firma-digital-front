@@ -31,8 +31,8 @@ const routes: Routes = [
     
     RouterModule.forChild(routes)
   ],
-  declarations: [FormsPage,FormTextPipe,VacacionesPage,PerformancePage,SituationUpdatePage,FormCompletionPage ],
-  providers:    [ FormTextPipe ],
+  declarations: [FormsPage,VacacionesPage,PerformancePage,SituationUpdatePage ],
+  providers:    [  ],
   
 })
 export class FormsPageModule {}

@@ -16,6 +16,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { PDFViewPageModule } from './pdfview/pdfview.module';
 import { LoadingScreenInterceptor } from './interceptor/loading.interceptor';
+import { SharedModuleModule } from './shared/shared-module/shared-module.module';
 @NgModule({
   declarations: [AppComponent, ],
   entryComponents: [],
@@ -26,6 +27,7 @@ import { LoadingScreenInterceptor } from './interceptor/loading.interceptor';
     OptionsPagePageModule,
     HttpClientModule,
     PDFViewPageModule,
+    SharedModuleModule
     
   ],
   providers: [

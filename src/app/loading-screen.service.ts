@@ -21,7 +21,6 @@ export class LoadingScreenService {
       backdropDismiss: false
     });
     await this.loading.present().then(() => {
-      console.log('presented');
       if (!this.isLoading) {
         this.loading.dismiss().then(() => console.log('abort presenting'));
       }
