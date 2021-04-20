@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { RoleService } from 'src/app/services/role.service';
 import { AuthService } from './../../services/auth.service';
 
@@ -18,7 +19,7 @@ export class SettingsPage implements OnInit {
   newName
   newDescription
   selectedRole
-  constructor(private authService: AuthService, private roleService  :RoleService) {}
+  constructor(private authService: AuthService, private roleService  :RoleService,private toastController : ToastController) {}
 
   ngOnInit() {
     this.authService.isAdmin().subscribe(
@@ -79,6 +80,7 @@ export class SettingsPage implements OnInit {
   deleteRole(id){
     this.roleService.deleteRole(id).subscribe(
       res => {
+        this.presentToast(res)
       this.getRoles()
       this.getUsersWithRoles()
 
@@ -112,6 +114,14 @@ dettach(userRole,user){
     },
     error=> console.log(error)
   )
+}
+async presentToast(message) {
+  const toast = await this.toastController.create({
+    message: message,
+    duration: 4000,
+    position: 'top'
+  });
+  toast.present();
 }
 }
 

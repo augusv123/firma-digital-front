@@ -46,7 +46,7 @@
         </ion-card>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="isAdmin()" class="ion-justify-content-center">
+    <ion-row *ngIf="isAdmin()"  padding="true" class="ion-justify-content-center">
       <!-- *ngIf="isAdmin()" -->
       <ion-col>
           <ion-row *ngFor="let user of filteredUsers"> 
@@ -65,7 +65,7 @@
               </ion-col>
               <ion-col>
                 <ion-label >
-                      <h2 *ngFor="let userRole of user.roles"> {{userRole.description}}
+                      <h2 *ngFor="let userRole of user.roles"> {{userRole.name}}
                         <ion-button color="danger" fill="clear" (click)="dettach(userRole,user)">
                           <ion-icon name="close"></ion-icon>
                         </ion-button>
@@ -75,7 +75,7 @@
               <ion-col>
                 <ion-item>
                   <ion-select required="true" [(ngModel)]="user.selectedRole"  (ionChange)="assignRole(user)"    placeholder="seleccione un rol">
-                    <ion-select-option [value]="role.name" *ngFor="let role of roles" >{{role.description}}</ion-select-option>
+                    <ion-select-option [value]="role.name" *ngFor="let role of roles" >{{role.name}}</ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-col>
@@ -84,7 +84,7 @@
 
         
     </ion-row>
-    <ion-row padding="true">
+    <ion-row *ngIf="isAdmin()"  padding="true">
       <ion-col>
         <ion-item>
           <ion-label>Nombre</ion-label>
@@ -118,7 +118,7 @@
                 <h2>{{role.name}}</h2>
                 <h3>{{role.description}}</h3>
               </ion-label>
-              <ion-button (click)="deleteRole(role.id)" slot="end" color="danger">
+              <ion-button [disabled]=" role.name == 'GPV' || role.name == 'Suavestar' || role.name == 'Gani'  || role.name == 'FPV' || role.name == 'admin' || role.name == 'user'   " (click)="deleteRole(role.id)" slot="end" color="danger">
                 <ion-icon name="trash"></ion-icon>
         
               </ion-button>
