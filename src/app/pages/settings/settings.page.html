@@ -29,6 +29,10 @@
             <ion-icon name="mail"></ion-icon>
             <ion-label class="ion-text-center">{{user.email}}</ion-label>
           </ion-item>
+          <ion-item class="ion-activated ion-justify-content-center">
+            <ion-icon name="key"></ion-icon>
+            <ion-label class="ion-text-center">{{user.rolenames}}</ion-label>
+          </ion-item>
         
           <ion-card-content>
             <ion-grid>
@@ -102,7 +106,7 @@
       </ion-col>
       
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="isAdmin()">
       <ion-col>
         <ion-list>
         

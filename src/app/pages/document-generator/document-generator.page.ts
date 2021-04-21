@@ -8,6 +8,7 @@ import { OptionsPagePage } from 'src/app/options-page/options-page.page';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { RoleService } from 'src/app/services/role.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 export class Options {
@@ -113,9 +114,10 @@ export class DocumentGeneratorPage implements OnInit {
   mode = "create"
   roles
   selectedRoles
+  isApoderado = false
   subtitulosInputs : Subtitle[] = []
   constructor(  private router: Router, private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,
-    private route:ActivatedRoute, private roleService : RoleService) {
+    private route:ActivatedRoute, private roleService : RoleService, private authService: AuthService) {
     this.newForm = this.fb.group({})
     // this.createAdvancedControls(this.advancedForm)
     console.log(this.myForm)
@@ -131,7 +133,20 @@ export class DocumentGeneratorPage implements OnInit {
 
     console.log(this.route.snapshot.paramMap.get('documentId'));
     this.avatarUrl = localStorage.getItem('avatarUrl')
+    this.hasRole()
+  }
+  hasRole(){
+    this.authService.hasRole('apoderado').subscribe(
+      res => {
+        if(res){
 
+          this.isApoderado = true
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
   submitForm(){
     console.log("submited")

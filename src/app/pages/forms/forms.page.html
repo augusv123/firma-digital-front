@@ -25,9 +25,21 @@
     
     </ion-select>
   </ion-item> -->
+  <ion-item>
+    <h2>Formularios</h2>
+    <ion-button (click)="getAllFiles()" color="mango" slot="end" >
+      Actualizar listado
+      <ion-icon name="refresh"></ion-icon>
+    </ion-button>
+  </ion-item>
+
   <ion-list>
     <ion-searchbar  [(ngModel)]="filter" (ionChange)="searchAndFilterItems()" ></ion-searchbar>
-    <ion-list-header> Seleccion de formulario</ion-list-header>
+    <ion-list-header> 
+      Seleccion de formulario</ion-list-header>
+    <ion-chip *ngIf="files <=  0" class="warning" color="warning">
+      <ion-label color="dark">No se encontraron formularios para este usuario.</ion-label>
+    </ion-chip>
     <ng-container *ngFor="let file of filteredForms">
 
       <ion-item *ngIf="vencido(file.fecha_finalizacion)  &&  (file.visible == 1)" >

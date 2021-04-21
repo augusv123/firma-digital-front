@@ -35,7 +35,7 @@
     </ion-col>
   </ion-row>
     <ion-row>
-      <ion-col>
+      <ion-col *ngIf="isApoderado">
         <ion-item>
           <ion-label>Firma inicial de apoderado :</ion-label>
           <ion-checkbox [(ngModel)]="signed"></ion-checkbox>
@@ -166,11 +166,11 @@
         <ion-icon name="options" ></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col>
+    <!-- <ion-col>
       <ion-button shape="round"  (click)="addChildren(dynamicform[i])" fill="outline">
         <ion-icon name="copy" ></ion-icon>
       </ion-button>
-    </ion-col>
+    </ion-col> -->
     
     <ion-col size="12" *ngIf="dynamicform[i].type == 'select' ">
       <ion-col size="12"> 

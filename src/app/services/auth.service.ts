@@ -44,6 +44,11 @@ export class AuthService {
 
     return this.http.get(url,{ } );
   }
+  hasRole(role){
+    const url = environment.apiUrl + "hasRole?role="+role ;
+
+    return this.http.get(url);
+  }
 
   logout() {
     console.log("loggin out...")

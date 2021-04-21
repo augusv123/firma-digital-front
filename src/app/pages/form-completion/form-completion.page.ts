@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { FormTextPipe } from 'src/app/form-text.pipe';
 import { FormService } from 'src/app/form.service';
@@ -32,7 +32,7 @@ export class FormCompletionPage implements OnInit {
   filteredForms
   filter
   file
-  constructor(private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
+  constructor(private router: Router,private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
      private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe,public datepipe: DatePipe, public route : ActivatedRoute) {
     this.myForm = this.fb.group({})
     const newFormControl = new FormControl()
@@ -55,31 +55,7 @@ export class FormCompletionPage implements OnInit {
     this.categorias = []
   }
 
-  // getForm(filename){
-  //   this.selectedFile = filename
-  //   this.clearControls()
-  //   this.formService.getForm(filename).subscribe( 
-  //     res => {
-  //       let obj = JSON.parse(res.toString());
-  //       this.simpleForm = obj
-  //       // console.log(obj)
 
-  //       // this.transformText(this.simpleForm.inputs)
-  //       this.createControls(obj.inputs)
-     
-  //       obj.inputs.forEach(input => {
-  //         this.categorias.push(input.positionKey)
-  //       });
-  //       this.categorias = this.categorias.filter(function(elem, index, self) {
-  //         return index === self.indexOf(elem);
-  //       })
-  //       this.loaded = true
-  //     },
-  //     error => {
-  //       console.log(error)
-  //     }
-  //   )
-  // }
   getForm(fileID){
     this.formService.getCompletionForm(fileID).subscribe(
       res => {
@@ -146,7 +122,7 @@ export class FormCompletionPage implements OnInit {
       (res: any) => { 
         console.log(res)
         this.downLoadFile(res, "application/pdf","pdf")
-     
+        this.router.navigate(['/home']);
      
       },
       (error: any) => {

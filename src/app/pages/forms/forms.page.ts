@@ -60,31 +60,6 @@ export class FormsPage implements OnInit {
     this.selectedFile = file
   }
 
-  // getForm(filename){
-  //   this.selectedFile = filename
-  //   this.clearControls()
-  //   this.formService.getForm(filename).subscribe( 
-  //     res => {
-  //       let obj = JSON.parse(res.toString());
-  //       this.simpleForm = obj
-  //       // console.log(obj)
-
-  //       // this.transformText(this.simpleForm.inputs)
-  //       this.createControls(obj.inputs)
-     
-  //       obj.inputs.forEach(input => {
-  //         this.categorias.push(input.positionKey)
-  //       });
-  //       this.categorias = this.categorias.filter(function(elem, index, self) {
-  //         return index === self.indexOf(elem);
-  //       })
-  //       this.loaded = true
-  //     },
-  //     error => {
-  //       console.log(error)
-  //     }
-  //   )
-  // }
   getForm(file){
     this.selectedFile = file
     this.clearControls()
