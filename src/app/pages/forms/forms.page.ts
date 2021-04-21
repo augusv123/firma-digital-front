@@ -51,6 +51,11 @@ export class FormsPage implements OnInit {
   ngOnInit() {
     this.getAllFiles()
   }
+  ionViewWillEnter(){
+    this.getAllFiles()
+
+    console.log("will enter")
+  }
   clearControls(){
     this.myForm = this.fb.group({})
     this.simpleForm = null

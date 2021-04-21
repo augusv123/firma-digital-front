@@ -1,8 +1,18 @@
 
-  <button (click)="signForm()">Firmar</button>
+  <!-- <button (click)="signForm()">Firmar</button> -->
+  <ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Modal Content</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="mango" (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
   <object  #obj  [data]="blob"
 
   type="application/pdf"
   style="height:600px;width:100%;margin:0px;"
   >
   </object>
+</ion-content>

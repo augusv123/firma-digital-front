@@ -52,7 +52,9 @@
     </ion-row>
     <ion-row *ngIf="isAdmin()"  padding="true" class="ion-justify-content-center">
       <!-- *ngIf="isAdmin()" -->
-      <ion-col>
+      <ion-col size="10">
+        <ion-card padding="true">
+
           <ion-row *ngFor="let user of filteredUsers"> 
               <ion-col>
                   <ion-label>
@@ -84,12 +86,15 @@
                 </ion-item>
               </ion-col>
           </ion-row>
+        </ion-card>
+
       </ion-col>
 
         
     </ion-row>
-    <ion-row *ngIf="isAdmin()"  padding="true">
-      <ion-col>
+    <ion-row *ngIf="isAdmin()"  padding="true" class="ion-justify-content-center">
+      <ion-col size="10">
+        <ion-card>
         <ion-item>
           <ion-label>Nombre</ion-label>
           <ion-input [(ngModel)]="newName"></ion-input>
@@ -102,12 +107,16 @@
     
           </ion-button>
         </ion-item>
+      </ion-card>
    
       </ion-col>
       
     </ion-row>
-    <ion-row *ngIf="isAdmin()">
-      <ion-col>
+    <ion-row *ngIf="isAdmin()" padding="true" class="ion-justify-content-center">
+     
+      <ion-col size="10">
+        <ion-card>
+        
         <ion-list>
         
           <ion-list-header>
@@ -128,6 +137,8 @@
               </ion-button>
           </ion-item>
         </ion-list>
+      </ion-card>
+
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -30,6 +30,7 @@ export interface RootObject {
 export class DynamicFormControl {
   key: string;
   type: string;
+  label: string;
   options : Options
   positionKey : any
   children : DynamicFormControl[]
@@ -205,6 +206,7 @@ export class DocumentGeneratorPage implements OnInit {
     const dinamicFormControl = new DynamicFormControl()
     this.dynamicform.push(dinamicFormControl)
     console.log(this.dynamicform)
+    
   }
   // addInput(){
   //   const control = new FormControl()
@@ -422,6 +424,17 @@ getRoles() {
 }
 logg(){
   console.log(this.selectedRoles)
+}
+copyInput(input){
+  var dinamicFormControl = new DynamicFormControl()
+
+   Object.keys(input).forEach((key) => {
+    dinamicFormControl[key] = input[key]
+  })
+  dinamicFormControl.key  =  input.label + this.dynamicform.length
+  this.dynamicform.push(dinamicFormControl)
+  console.log(input)
+  console.log(this.dynamicform)
 }
  
 

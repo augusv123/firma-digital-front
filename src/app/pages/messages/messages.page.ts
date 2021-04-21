@@ -169,6 +169,7 @@ export class MessagesPage implements OnInit {
     const modal = await this.modalController.create({
       component: PDFViewPage,
       cssClass: 'my-custom-modal-css',
+      
       componentProps: {
         'blob': blob,
         'filename': filename,

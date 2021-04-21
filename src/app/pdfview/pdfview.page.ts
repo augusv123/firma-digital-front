@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { VacacionesService } from '../services/vacaciones.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class PDFViewPage implements OnInit {
   @Input() blob: string;
   @Input() filename: string;
 
-  constructor(private documentService: VacacionesService) { }
+  constructor(private documentService: VacacionesService,private modalController : ModalController) { }
 
   ngOnInit() {
     console.log(this.blob)
@@ -35,6 +36,11 @@ export class PDFViewPage implements OnInit {
       a.download = "solicituddevacaciones"+ext;
       a.click(); 
       
+    }
+    dismissModal() {
+      this.modalController.dismiss({
+        'dismissed': true
+      });
     }
   
 

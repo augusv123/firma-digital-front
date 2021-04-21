@@ -63,7 +63,8 @@ export class FormCompletionPage implements OnInit {
         this.clearControls()
             let obj = JSON.parse(this.selectedFile.valor);
             this.simpleForm = obj
-            // console.log(obj)
+            console.log(obj)
+            console.log(this.selectedFile.valor)
     
             // this.transformText(this.simpleForm.inputs)
             this.createControls(obj.inputs)

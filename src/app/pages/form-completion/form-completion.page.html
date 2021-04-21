@@ -45,6 +45,9 @@
             <ion-select *ngSwitchCase="'select'" [required]="c.options?.required"  value="none" [formControlName]="c.key">
               <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
             </ion-select>
+            <ion-select *ngSwitchCase="'multiple'" multiple [required]="c.options?.required"  value="none" [formControlName]="c.key">
+              <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
+            </ion-select>
         </ion-item>
       </ng-container>
     </ng-container>
