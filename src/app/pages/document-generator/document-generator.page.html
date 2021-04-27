@@ -50,7 +50,7 @@
       </ion-col>
       <ion-col>
         <ion-item>
-        <ion-select required="true" [(ngModel)]="selectedRoles" multiple  (ionChange)="logg()"    placeholder="seleccione un rol">
+        <ion-select required="true" [(ngModel)]="selectedRoles" multiple      placeholder="seleccione un rol">
           <ion-select-option [value]="role.name" *ngFor="let role of roles" >{{role.description}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -121,13 +121,8 @@
   
 
   <ion-row *ngFor="let control of dynamicform; let i = index;">
-    <ion-col style="visibility: hidden;">
 
-      <ion-item>
-        <ion-label>Identificador </ion-label>
-      <ion-input  [(ngModel)]="dynamicform[i].key" [value]="dynamicform[i].label + i" name=attribute-{{id}} placeholder="clave del campo"></ion-input>
-      </ion-item>
-    </ion-col>
+      <ion-input  [(ngModel)]="dynamicform[i].key" hidden [value]="dynamicform[i].label + i" name=attribute-{{id}} placeholder="clave del campo"></ion-input>
     <ion-col>
 
       <ion-item>
@@ -160,6 +155,14 @@
         <ion-select   [(ngModel)]="dynamicform[i].positionKey"  name=position-{{id}}  placeholder="seleccione categoria">
           <ion-select-option *ngFor="let subtitulo of subtitulosInputs" value="{{subtitulo.label}}">{{subtitulo.label}}</ion-select-option>
         </ion-select>
+      </ion-item>
+    
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Cols </ion-label>
+        <ion-input required type="number"  [(ngModel)]="dynamicform[i].colsize" max="12" min="1" name=row-{{id}} placeholder="columnas que ocupa"></ion-input>
+
       </ion-item>
     </ion-col>
     <ion-col>
@@ -209,7 +212,24 @@
     
   </ion-row>
   </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h2 class="titulosformgenerator">Diseño del formulario </h2>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row" style="justify-content: center;">
+      <ion-col  size="6">
 
+        <ion-row  style="border : solid 1px; padding: 5px;">
+          <ion-col *ngFor="let control of dynamicform; let i = index;" size="{{control.colsize}}" style="padding: 5px; border: solid 1px black;" [ngStyle]="{ 'color': 'white','background-color': categoriesColor? categoriesColor:'#808080'}">
+  
+        </ion-col>
+      </ion-row>
+    </ion-col>
+
+    </ion-row>
+  </ion-grid>
   <ion-grid padding="true">
   <ion-row>
     <ion-col>
@@ -247,13 +267,17 @@
     <ion-row class="ion-justify-content-center">
       <ion-col class="ion-justify-content-center" size="3">
 
-        <ion-button  color="primary"  (click)="saveForm()" expand="block" > Confirmar y guardar
+        <ion-button  color="primary" [disabled]="!validateNewForm()" (click)="saveForm()" expand="block" > Confirmar y guardar
         <ion-icon name="send"></ion-icon>
       </ion-button>
       </ion-col>
     </ion-row>
 
   </ion-grid>
+
+
+
+
 </ng-container>
 <ng-container *ngSwitchCase="'delete'" >
   <ion-list>

@@ -33,6 +33,7 @@ export class DynamicFormControl {
   label: string;
   options : Options
   positionKey : any
+  colsize = 12
   children : DynamicFormControl[]
   selectOptions : SelectOption[]
   constructor(){
@@ -114,8 +115,9 @@ export class DocumentGeneratorPage implements OnInit {
   signed =false
   mode = "create"
   roles
-  selectedRoles
+  selectedRoles = []
   isApoderado = false
+
   subtitulosInputs : Subtitle[] = []
   constructor(  private router: Router, private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,public modalController: ModalController ,public toastController: ToastController,
     private route:ActivatedRoute, private roleService : RoleService, private authService: AuthService) {
@@ -125,7 +127,7 @@ export class DocumentGeneratorPage implements OnInit {
     this.dynamicform = []
 
     this.addInput()
-    
+
    }
 
   ngOnInit() {
@@ -203,9 +205,14 @@ export class DocumentGeneratorPage implements OnInit {
   }
 
   addInput(){
-    const dinamicFormControl = new DynamicFormControl()
+    var dinamicFormControl = new DynamicFormControl()
+    
     this.dynamicform.push(dinamicFormControl)
     console.log(this.dynamicform)
+
+  
+
+
     
   }
   // addInput(){
@@ -240,6 +247,7 @@ export class DocumentGeneratorPage implements OnInit {
     }
   }
   saveForm(){
+    
     this.due_date = new DatePipe('en-US').transform(this.due_date, 'yyyy-MM-dd');
     console.log(this.due_date)
     const completedynamicForm = new CompleteDynamicForm(this.dynamicform,this.formText,this.categoriesColor, this.title,this.mail,this.signed ,this.due_date,this.selectedRoles)
@@ -271,6 +279,10 @@ export class DocumentGeneratorPage implements OnInit {
         console.log(error)
       }
     )
+  }
+  validateNewForm(){
+    if(this.subtitulosInputs.length > 0  && this.selectedRoles.length > 0) return true
+    return false
   }
   // getForm(){
   //   this.formService.getForm().subscribe( 

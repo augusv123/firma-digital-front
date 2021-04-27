@@ -32,6 +32,7 @@ export class FormCompletionPage implements OnInit {
   filteredForms
   filter
   file
+  currentRow = 0
   constructor(private router: Router,private fb : FormBuilder, private alertCrtl : AlertController,private formService: FormService,
      private vacacionesService :VacacionesService, private toastService :ToastService , private formTextPipe : FormTextPipe,public datepipe: DatePipe, public route : ActivatedRoute) {
     this.myForm = this.fb.group({})
@@ -117,6 +118,7 @@ export class FormCompletionPage implements OnInit {
       console.log(element.key)
       element.value  = arregloform[element.key] 
     });
+    console.log(this.simpleForm.inputs)
     this.simpleForm.formText  =  this.formTextPipe.transform( this.simpleForm.formText, this.simpleForm.inputs,this.myForm)
     this.simpleForm.categories = this.categorias
     this.vacacionesService.requestVacations(this.simpleForm,this.selectedFile.firma_apoderado).subscribe(
@@ -183,5 +185,16 @@ export class FormCompletionPage implements OnInit {
     return false
     console.log(latest_date)
     console.log(fechaVencimiento)
+  }
+  checkIfNewRow(value){
+      if(value != this.currentRow){
+        this.currentRow = value
+        return true
+      }
+      else{
+        this.currentRow = value
+
+        return false
+      }
   }
 }

@@ -32,24 +32,30 @@
         <ion-label>{{categoria}}</ion-label>
   
       </ion-list-header>
-      <ng-container *ngFor="let c of simpleForm?.inputs;let i = index">
+      <ion-grid>
+      <ion-row>
 
-        <ion-item *ngIf="c.positionKey == categoria" [ngSwitch]="c.type">
+      <ion-col size="{{c.colsize}}" *ngFor="let c of simpleForm?.inputs;let i = index">
+            <ion-item  *ngIf="c.positionKey == categoria" [ngSwitch]="c.type">
           
-          <ion-label position="stacked">{{c.label}}</ion-label>
-            <ion-toggle  *ngSwitchCase="'boolean'" [required]="c.options?.required"  [formControlName]="c.key" ></ion-toggle>
-            <ion-datetime  [pickerOptions]="customPickerOptions" [required]="c.options?.required"  displayFormat="DD/MM/YY"  placeholder="Custom Options" *ngSwitchCase="'date'" [formControlName]="c.key" ></ion-datetime>
-            <ion-textarea  *ngSwitchCase="'textarea'"  rows="3" [required]="c.options?.required"  [formControlName]="c.key" ></ion-textarea>
-            <ion-input  *ngSwitchCase="'text'" [required]="c.options?.required" [type]="c.options?.type ?  c.options.type :  'text' " [formControlName]="c.key" ></ion-input>
-            <ion-input  *ngSwitchCase="'number'"  [required]="c.options?.required" [type]="c.options?.type ?  c.options.type :  'number' " [formControlName]="c.key" ></ion-input>
-            <ion-select *ngSwitchCase="'select'" [required]="c.options?.required"  value="none" [formControlName]="c.key">
-              <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
-            </ion-select>
-            <ion-select *ngSwitchCase="'multiple'" multiple [required]="c.options?.required"  value="none" [formControlName]="c.key">
-              <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
-            </ion-select>
-        </ion-item>
-      </ng-container>
+              <ion-label position="stacked">{{c.label}}</ion-label>
+                <ion-toggle  *ngSwitchCase="'boolean'" [required]="c.options?.required"  [formControlName]="c.key" ></ion-toggle>
+                <ion-datetime  [pickerOptions]="customPickerOptions" [required]="c.options?.required"  displayFormat="DD/MM/YY"  placeholder="Custom Options" *ngSwitchCase="'date'" [formControlName]="c.key" ></ion-datetime>
+                <ion-textarea  *ngSwitchCase="'textarea'"  rows="3" [required]="c.options?.required"  [formControlName]="c.key" ></ion-textarea>
+                <ion-input  *ngSwitchCase="'text'" [required]="c.options?.required" [type]="c.options?.type ?  c.options.type :  'text' " [formControlName]="c.key" ></ion-input>
+                <ion-input  *ngSwitchCase="'number'"  [required]="c.options?.required" [type]="c.options?.type ?  c.options.type :  'number' " [formControlName]="c.key" ></ion-input>
+                <ion-select *ngSwitchCase="'select'" [required]="c.options?.required"  value="none" [formControlName]="c.key">
+                  <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
+                </ion-select>
+                <ion-select *ngSwitchCase="'multiple'" multiple [required]="c.options?.required"  value="none" [formControlName]="c.key">
+                  <ion-select-option *ngFor="let option of c.selectOptions" value="{{option.value}}">{{option.label}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+     
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
     </ng-container>
   
     <!-- <ion-item>
